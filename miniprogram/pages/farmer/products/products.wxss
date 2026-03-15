@@ -1,0 +1,174 @@
+/** pages/farmer/products/products.wxss **/
+.container {
+  min-height: 100vh;
+  background-color: #f7f9fc; /* Light background */
+  padding: 32rpx;
+  padding-bottom: 200rpx; /* TabBar space */
+}
+
+.product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+}
+
+.product-card {
+  background-color: #fff;
+  border-radius: 40rpx;
+  padding: 32rpx;
+  display: flex;
+  gap: 32rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.02);
+  border: 2rpx solid rgba(229, 231, 235, 0.3);
+}
+
+.image-box {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 32rpx;
+  overflow: hidden;
+  background-color: #f3f4f6;
+  flex-shrink: 0;
+}
+
+.product-img {
+  width: 100%;
+  height: 100%;
+}
+
+.product-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24rpx;
+}
+
+.product-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #1f2937;
+  line-height: 1.4;
+  flex: 1;
+  margin-right: 16rpx;
+}
+
+.status-badge {
+  font-size: 20rpx;
+  font-weight: bold;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  white-space: nowrap;
+}
+
+.status-published {
+  background-color: #ecfdf5; /* Emerald-50 */
+  color: #10b981; /* Emerald-500 */
+}
+
+.status-pending {
+  background-color: #fffbeb; /* Amber-50 */
+  color: #f59e0b;
+}
+
+.status-offline {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+}
+
+/* Stats */
+.stats-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: auto; /* Push footer down */
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 20rpx;
+  color: #9ca3af;
+  margin-bottom: 4rpx;
+  font-weight: 500;
+}
+
+.stat-val {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #374151;
+}
+
+.stock-val {
+  color: #4b5563;
+}
+
+.stat-divider {
+  width: 2rpx;
+  height: 40rpx;
+  background-color: #e5e7eb;
+  margin: 0 40rpx;
+}
+
+/* Footer Actions */
+.action-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20rpx;
+  margin-top: 24rpx;
+}
+
+.btn {
+  font-size: 24rpx;
+  font-weight: bold;
+  padding: 12rpx 32rpx;
+  border-radius: 16rpx;
+}
+
+.btn-outline {
+  background-color: #fff;
+  border: 2rpx solid #e5e7eb;
+  color: #9ca3af;
+}
+
+.btn-soft-green {
+  background-color: #ecfdf5; /* Emerald-50 */
+  color: #10b981; /* Emerald-500 */
+}
+
+/* Empty State */
+.empty-state {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120rpx 40rpx;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 100rpx;
+  margin-bottom: 24rpx;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  color: #6b7280;
+  margin-bottom: 12rpx;
+}
+
+.empty-hint {
+  font-size: 24rpx;
+  color: #9ca3af;
+}
+

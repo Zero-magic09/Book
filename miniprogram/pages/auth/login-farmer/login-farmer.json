@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "农户登录",
+    "usingComponents": {
+        "ui-input": "/components/ui-input/ui-input",
+        "ui-button": "/components/ui-button/ui-button"
+    }
+}

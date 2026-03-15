@@ -1,0 +1,274 @@
+<view class="container {{activeTab === 'me' ? 'bg-emerald-50-20' : ''}}">
+  
+  <!-- Custom Header for Home Tab -->
+  <view wx:if="{{activeTab === 'home'}}" class="home-header sticky-top">
+    <view class="flex items-center gap-3">
+      <view class="logo-box">
+        <!-- SVG Icon -->
+        <view class="logo-svg"></view>
+      </view>
+      <view class="search-box">
+        <input type="text" placeholder="寻找家乡的地道原味..." class="search-input" placeholder-class="placeholder-text" />
+        <text class="search-icon">🔍</text>
+      </view>
+      <view class="user-btn" bindtap="handleTabSelect" data-id="me">
+        <text class="user-icon">👤</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Title Header for other tabs (except Me) -->
+
+
+  <!-- Main Content -->
+  <view class="main-content">
+    
+    <!-- Tab: Home -->
+    <view wx:if="{{activeTab === 'home'}}" class="tab-content animate-fade-in">
+      <view class="px-5 py-5 space-y-7">
+        <!-- Filters -->
+        <scroll-view scroll-x class="filter-scroll" enable-flex>
+          <block wx:for="{{filters}}" wx:key="*this">
+            <view 
+              bindtap="handleFilterSelect" 
+              data-filter="{{item}}"
+              class="filter-chip {{activeFilter === item ? 'filter-active' : ''}}"
+            >
+              {{item}}
+            </view>
+          </block>
+        </scroll-view>
+
+        <!-- Banner -->
+        <view class="banner-card">
+          <image src="https://picsum.photos/seed/rural-market/800/400" mode="aspectFill" class="banner-img" />
+          <view class="banner-overlay">
+            <view class="banner-tag">SEASONAL SPECIAL</view>
+            <view class="banner-title">助农专区 · 限时补贴</view>
+            <view class="banner-subtitle">源头直采 现收现发 极速到家</view>
+          </view>
+        </view>
+
+        <!-- Categories -->
+        <view class="category-grid">
+          <block wx:for="{{categories}}" wx:key="id">
+            <view class="category-item">
+              <view class="category-icon {{item.bg}}">
+                <text>{{item.icon}}</text>
+              </view>
+              <text class="category-name">{{item.name}}</text>
+            </view>
+          </block>
+        </view>
+
+        <!-- Product List -->
+        <view>
+          <view class="section-header">
+            <view class="flex flex-col">
+              <text class="section-title">为您精选</text>
+              <view class="section-underline"></view>
+            </view>
+          </view>
+          
+          <view class="product-grid">
+            <block wx:for="{{products}}" wx:key="id">
+              <view class="product-card" bindtap="handleProductClick" data-id="{{item.id}}">
+                <view class="product-img-box">
+                  <image src="{{item.image || 'https://picsum.photos/seed/harvest'+item.id+'/400/400'}}" mode="aspectFill" class="product-img" />
+                  <view wx:if="{{item.badge}}" class="tag-fresh">{{item.badge}}</view>
+                </view>
+                <view class="product-info">
+                  <text class="product-name">{{item.name}}</text>
+                  <text class="product-location">{{item.origin}} · {{item.farmer.farmName || '自营农场'}}</text>
+                  <view class="product-bottom">
+                    <text class="product-price">￥{{item.price}}</text>
+                    <view class="add-btn">
+                      <text style="font-size: 24rpx;">+</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </block>
+            <!-- 无数据展示 -->
+            <view wx:if="{{products.length === 0}}" class="empty-state">
+              <text class="empty-icon">🍃</text>
+              <text class="empty-text">暂无精选信息</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Tab: Cart -->
+    <view wx:if="{{activeTab === 'cart'}}" class="tab-content animate-slide-in pb-32">
+      <view class="px-5 py-5 space-y-4">
+        <view class="flex justify-between items-center mb-2">
+          <text class="cart-title">购物车</text>
+          <text class="cart-count">共 {{cartItems.length}} 件商品</text>
+        </view>
+
+        <block wx:for="{{cartItems}}" wx:key="id">
+          <view class="cart-item">
+            <image src="{{item.img}}" mode="aspectFill" class="cart-item-img" />
+            <view class="cart-item-info">
+              <view>
+                <text class="cart-item-name">{{item.name}}</text>
+                <text class="cart-item-farmer">{{item.farmer}}</text>
+              </view>
+              <view class="flex justify-between items-center">
+                <view class="flex items-baseline">
+                  <text class="cart-price">￥{{item.price}}</text>
+                  <text class="cart-unit">/{{item.unit}}</text>
+                </view>
+                <view class="qty-control">
+                  <view class="qty-btn" bindtap="updateQty" data-id="{{item.id}}" data-delta="{{-1}}">-</view>
+                  <text class="qty-text">{{item.qty}}</text>
+                  <view class="qty-btn" bindtap="updateQty" data-id="{{item.id}}" data-delta="{{1}}">+</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+
+        <!-- Checkout Bar -->
+        <view class="checkout-bar-container">
+          <view class="checkout-bar">
+            <view class="flex flex-col">
+              <text class="total-label">合计预估</text>
+              <text class="total-price">￥{{totalPrice}}</text>
+            </view>
+            <view class="checkout-btn">立即结算</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Tab: Order -->
+    <view wx:if="{{activeTab === 'order'}}" class="tab-content animate-slide-in">
+      <view class="px-5 py-5 space-y-4">
+        <view class="flex justify-between items-center mb-2">
+          <text class="cart-title">我的溯源单</text>
+          <view class="view-all-btn" bindtap="handleOrderClick" data-status="all">查看全部</view>
+        </view>
+
+        <block wx:for="{{[1, 2]}}" wx:key="*this">
+          <view class="order-card" bindtap="handleOrderClick" data-status="unshipped">
+            <view class="order-header">
+              <text class="order-no">订单编号: VILI-2024102{{item}}</text>
+              <text class="order-status">待收货</text>
+            </view>
+            <view class="order-body">
+              <image src="https://picsum.photos/seed/fruit{{item}}/200/200" mode="aspectFill" class="order-img" />
+              <view class="order-info">
+                <view>
+                  <text class="order-name">栖霞红富士苹果 · 产地直供</text>
+                  <text class="order-time">下单时间: 2024-10-25 14:30</text>
+                </view>
+                <view class="flex justify-between items-center">
+                  <text class="order-price">￥39.9</text>
+                  <text class="order-qty">数量: 1</text>
+                </view>
+              </view>
+            </view>
+            <view class="order-footer">
+              <view class="order-btn-default">物流详情</view>
+              <view class="order-btn-primary">查看全程溯源</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- Tab: Me -->
+    <view wx:if="{{activeTab === 'me'}}" class="tab-content animate-fade-in">
+      <view class="profile-header">
+        <view class="profile-decoration">
+           <!-- Leaf SVG omitted for brevity, using class -->
+        </view>
+        <view class="profile-user">
+          <view class="avatar-box">
+            <image src="https://picsum.photos/seed/user-avatar/200/200" mode="aspectFill" class="avatar-img" />
+          </view>
+          <view class="user-info">
+            <text class="user-name">向阳而生</text>
+            <view class="user-tag">资深觅食官</view>
+          </view>
+          <view class="edit-btn" bindtap="handleEditProfile">
+            <text >></text>
+          </view>
+        </view>
+      </view>
+
+      <view class="profile-body px-5 space-y-6">
+        <!-- Stats -->
+        <view class="stats-row">
+          <view class="stat-item">
+            <text class="stat-val">24</text>
+            <text class="stat-label">我的足迹</text>
+          </view>
+          <view class="stat-item">
+            <text class="stat-val">12</text>
+            <text class="stat-label">收藏产品</text>
+          </view>
+          <view class="stat-item">
+            <text class="stat-val">850</text>
+            <text class="stat-label">生态积分</text>
+          </view>
+        </view>
+
+        <!-- Orders Entry -->
+        <view>
+          <view class="flex justify-between items-center mb-3 px-1">
+            <text class="section-title-sm">我的溯源单</text>
+            <view class="view-all-text" bindtap="handleOrderClick" data-status="all">全部订单 ></view>
+          </view>
+          <ui-card className="!p-5 !rounded-[2rem]">
+            <view class="order-states-row">
+              <block wx:for="{{orderStates}}" wx:key="status">
+                <view class="state-item" bindtap="handleOrderClick" data-status="{{item.status}}">
+                   <text class="state-icon">{{item.icon}}</text>
+                   <text class="state-label">{{item.label}}</text>
+                   <view wx:if="{{item.count > 0}}" class="state-badge">{{item.count}}</view>
+                </view>
+              </block>
+            </view>
+          </ui-card>
+        </view>
+
+        <!-- Menu Groups -->
+        <block wx:for="{{menuGroups}}" wx:key="title">
+          <view>
+            <text class="section-title-sm mb-3 px-1 block">{{item.title}}</text>
+            <ui-card className="!p-0 overflow-hidden !rounded-[2rem]">
+              <view class="menu-list">
+                <block wx:for="{{item.items}}" wx:key="label" wx:for-item="subItem">
+                  <view class="menu-item" bindtap="handleMenuClick" data-path="{{subItem.path}}">
+                    <view class="menu-icon-box">
+                      <text>{{subItem.icon}}</text>
+                    </view>
+                    <text class="menu-label">{{subItem.label}}</text>
+                    <view class="flex items-center gap-2">
+                      <text class="menu-extra {{subItem.status === 'verified' ? 'text-emerald-500' : ''}}">{{subItem.extra}}</text>
+                      <text class="menu-arrow">></text>
+                    </view>
+                  </view>
+                </block>
+              </view>
+            </ui-card>
+          </view>
+        </block>
+
+        <!-- Logout -->
+        <view class="pb-24 pt-4">
+          <button class="logout-btn" bindtap="handleLogout">
+            <text>退出登录</text>
+          </button>
+          <view class="version-text">Village Direct · V1.0.2 Stable</view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <ui-tabbar activeTab="{{activeTab}}" items="{{tabItems}}" bind:select="handleTabSelect" />
+</view>

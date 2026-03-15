@@ -1,0 +1,39 @@
+<view class="container">
+  <view class="status-card" wx:if="{{isAuthenticated}}">
+    <view class="icon-wrapper success">
+      <text class="status-icon">✓</text>
+    </view>
+    <text class="status-title">已完成实名认证</text>
+    <text class="status-desc">您的身份信息已核验通过</text>
+    
+    <view class="info-row">
+      <text class="label">姓名</text>
+      <text class="value">{{name}}</text>
+    </view>
+    <view class="info-row">
+      <text class="label">身份证号</text>
+      <text class="value">{{idCard}}</text>
+    </view>
+    
+    <button class="retry-btn" bindtap="handleRetry">重新认证</button>
+  </view>
+
+  <view class="form-card" wx:else>
+    <view class="form-header">
+      <text class="form-title">身份信息录入</text>
+      <text class="form-desc">请填写您的真实身份信息，我们将严格保密</text>
+    </view>
+    
+    <view class="form-group">
+      <text class="label">真实姓名</text>
+      <input class="input" type="text" value="{{name}}" placeholder="请输入身份证上的姓名" bindinput="handleInput" data-field="name" />
+    </view>
+    
+    <view class="form-group">
+      <text class="label">身份证号</text>
+      <input class="input" type="idcard" value="{{idCard}}" placeholder="请输入18位身份证号" bindinput="handleInput" data-field="idCard" />
+    </view>
+    
+    <button class="submit-btn" bindtap="handleSubmit">提交认证</button>
+  </view>
+</view>

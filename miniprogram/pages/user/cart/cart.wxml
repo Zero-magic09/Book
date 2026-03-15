@@ -1,0 +1,49 @@
+<wxs src="../../../utils/utils.wxs" module="utils" />
+
+<view class="container">
+  <!-- Header Removed -->
+
+  <view class="cart-section" wx:if="{{cartItems.length > 0}}">
+    <!-- Removed redundant section-header -->
+    
+    <view class="cart-list">
+      <view class="cart-item" wx:for="{{cartItems}}" wx:key="id">
+        <!-- <checkbox class="item-checkbox" checked="{{item.selected}}" /> -->
+        
+        <view class="item-image-wrapper">
+           <image class="item-image" src="{{utils.formatImageURL(item.image)}}" mode="aspectFill" />
+        </view>
+        
+        <view class="item-info">
+          <text class="item-name">{{item.name}}</text>
+          <text class="item-farmer">{{item.farmer}}</text>
+          
+          <view class="item-footer">
+            <text class="item-price">¥{{item.price}}<text class="price-unit">/份</text></text>
+            <view class="quantity-control">
+               <view class="qty-btn" bindtap="decreaseQty" data-id="{{item.id}}">—</view>
+               <text class="qty-text">{{item.quantity}}</text>
+               <view class="qty-btn" bindtap="increaseQty" data-id="{{item.id}}">+</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <text class="empty-icon">🛒</text>
+    <text class="empty-text">购物车是空的</text>
+    <text class="empty-text" style="font-size: 26rpx; opacity: 0.6; margin-top: 10rpx;">去集市逛逛吧~</text>
+  </view>
+
+  <view class="floating-footer" wx:if="{{cartItems.length > 0}}">
+    <view class="total-section">
+      <text class="total-label">合计预估</text>
+      <text class="total-price">¥{{totalPrice}}</text>
+    </view>
+    <view class="checkout-btn" bindtap="checkout">立即结算</view>
+  </view>
+
+  <ui-tabbar activeTab="{{activeTab}}" items="{{tabItems}}" bind:select="handleTabSelect" />
+</view>

@@ -1,0 +1,33 @@
+/* components/ui-header/ui-header.wxss */
+@import "../../app.wxss";
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  padding: 32rpx;
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  border-bottom: 2rpx solid var(--gray-100);
+}
+
+.back-btn {
+  padding: 16rpx;
+  border-radius: 50%;
+}
+.back-btn:active {
+  background-color: var(--gray-100);
+}
+
+.back-icon {
+  font-size: 36rpx;
+}
+
+.title {
+  font-size: 40rpx; /* text-xl */
+  font-weight: 700;
+  color: var(--slate-800);
+}

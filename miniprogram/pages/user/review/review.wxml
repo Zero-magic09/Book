@@ -1,0 +1,29 @@
+<wxs module="utils" src="../../../utils/utils.wxs"></wxs>
+
+<view class="container">
+  <view class="review-card" wx:for="{{items}}" wx:for-index="prodIndex" wx:key="productId">
+    <view class="product-info">
+      <image class="prod-img" src="{{utils.formatImageURL(item.image)}}" mode="aspectFill" />
+      <text class="prod-name">{{item.name}}</text>
+    </view>
+    
+    <view class="rating-section">
+      <text class="label">评分</text>
+      <view class="stars">
+        <view class="star {{s <= item.rating ? 'active' : ''}}" 
+              wx:for="{{[1,2,3,4,5]}}" wx:for-item="s" wx:key="*this"
+              bindtap="handleRating" data-index="{{prodIndex}}" data-rating="{{s}}">★</view>
+      </view>
+      <text class="rating-text">{{item.rating}}分</text>
+    </view>
+    
+    <view class="content-section">
+      <textarea class="review-input" placeholder="亲，您对这个商品满意吗？您的评价会帮助我们选择更好的产品哦~" 
+                bindinput="handleContentInput" data-index="{{prodIndex}}" value="{{item.content}}"/>
+    </view>
+  </view>
+
+  <view class="btn-area">
+    <button class="submit-btn" bindtap="handleSubmit" disabled="{{loading}}">提交评价</button>
+  </view>
+</view>

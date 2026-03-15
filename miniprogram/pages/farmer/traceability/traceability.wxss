@@ -1,0 +1,148 @@
+/** pages/farmer/traceability/traceability.wxss **/
+.container {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  padding: 32rpx;
+  padding-bottom: 40rpx;
+}
+
+/* Tip Box */
+.tip-box {
+  background-color: #ecfdf5; /* Green-50 */
+  border: 2rpx solid #d1fae5;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 32rpx;
+  color: #065f46; /* Green-800 */
+  font-size: 26rpx;
+  line-height: 1.5;
+}
+
+/* Form Card */
+.form-card {
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 32rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.02);
+  margin-bottom: 40rpx;
+}
+
+.form-item {
+  margin-bottom: 32rpx;
+}
+
+.label {
+  font-size: 28rpx;
+  color: #64748b;
+  margin-bottom: 16rpx;
+}
+
+/* Picker */
+.picker-box {
+  background-color: #f8fafc;
+  padding: 24rpx;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  color: #1e293b;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.picker-box.placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.arrow {
+  color: #cbd5e1;
+  font-size: 24rpx;
+  transform: rotate(180deg); /* Adjust if needed */
+}
+
+/* Type Grid */
+.type-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24rpx;
+}
+
+.type-tag {
+  width: 180rpx; /* fixed width approx to match grid of 3 */
+  text-align: center;
+  padding: 16rpx 0;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  color: #64748b;
+  border: 2rpx solid #f1f5f9;
+  background-color: #fff;
+  transition: all 0.2s;
+}
+
+.type-tag.active {
+  background-color: #059669; /* Green-600 */
+  border-color: #059669;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4rpx 12rpx rgba(5, 150, 105, 0.3);
+}
+
+/* Content Area */
+.content-area {
+  width: 100%;
+  height: 240rpx;
+  background-color: #f8fafc;
+  padding: 24rpx;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  color: #334155;
+  box-sizing: border-box;
+}
+
+.ph-color {
+  color: #cbd5e1;
+}
+
+/* Photos */
+.photo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24rpx;
+}
+
+.photo-item {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 16rpx;
+  background-color: #f1f5f9;
+}
+
+.add-photo-btn {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 16rpx;
+  background-color: #f4f5f9;
+  border: 2rpx dashed #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plus {
+  font-size: 60rpx;
+  color: #cbd5e1;
+  font-weight: 300;
+}
+
+/* Footer Btn */
+.footer-btn {
+  background-color: #059669; /* Green-600 */
+  color: #fff;
+  text-align: center;
+  padding: 28rpx;
+  border-radius: 16rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  box-shadow: 0 8rpx 20rpx rgba(5, 150, 105, 0.2);
+}

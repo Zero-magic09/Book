@@ -1,0 +1,16 @@
+/* components/ui-input/ui-input.wxss */
+@import "../../app.wxss";
+
+.input {
+  width: 100%;
+  padding: 28rpx 40rpx; /* py-3.5 (14px) px-5 (20px) -> 28rpx 40rpx */
+  border-radius: 32rpx; /* rounded-2xl */
+  background-color: var(--gray-50); /* bg-slate-50 */
+  font-size: 28rpx; /* text-sm */
+  color: var(--slate-800);
+  box-sizing: border-box;
+}
+
+.input-placeholder {
+  color: #cbd5e1; /* text-slate-300 */
+}

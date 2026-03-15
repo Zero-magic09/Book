@@ -1,0 +1,50 @@
+<view class="container">
+  
+  <view class="section-title">农场档案</view>
+  <view class="card">
+    <view class="form-item">
+      <view class="label">农场名称</view>
+      <input class="input-text bold" value="{{info.name}}" bindinput="handleInput" data-field="name" disabled="{{verified || isPending}}" />
+    </view>
+    <view class="divider"></view>
+    
+    <picker mode="region" bindchange="bindRegionChange" value="{{region}}" disabled="{{verified || isPending}}">
+        <view class="form-item">
+            <view class="label">所在地区</view>
+            <view class="picker-text {{region.length > 0 ? '' : 'placeholder'}}" style="color: {{region.length > 0 ? '#333' : '#999'}};">
+                {{region.length > 0 ? region[0] + ' ' + region[1] + ' ' + region[2] : '请选择省市区'}}
+            </view>
+        </view>
+    </picker>
+    <view class="divider"></view>
+
+    <view class="form-item">
+      <view class="label">详细地址</view>
+      <input class="input-text" value="{{info.address}}" bindinput="handleInput" data-field="address" disabled="{{verified || isPending}}" />
+    </view>
+  </view>
+
+  <view class="section-title">农场故事</view>
+  <view class="card">
+    <textarea class="story-area" 
+              value="{{info.story}}" 
+              bindinput="handleInput" 
+              data-field="story" 
+              disabled="{{verified || isPending}}"
+              placeholder="讲述您的农场故事..." />
+    <view class="edit-icon" wx:if="{{!verified && !isPending}}">✎</view>
+  </view>
+
+  <block wx:if="{{!verified}}">
+    <view class="submit-btn {{isPending ? 'pending-btn' : ''}}" bindtap="handleSubmit" 
+      style="{{isPending ? 'background: #f59e0b;' : ''}}">
+      {{isPending ? '等待审核' : '提交认证'}}
+    </view>
+    <view class="reset-btn" bindtap="handleReset" wx:if="{{isPending}}">重新认证</view>
+  </block>
+  <block wx:else>
+    <view class="submit-btn disabled">已认证</view>
+    <view class="reset-btn" bindtap="handleReset">重新认证</view>
+  </block>
+
+</view>

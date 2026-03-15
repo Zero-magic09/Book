@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "商品管理",
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "ui-tabbar": "/components/ui-tabbar/ui-tabbar"
+    }
+}

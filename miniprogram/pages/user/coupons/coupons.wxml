@@ -1,0 +1,25 @@
+<view class="container">
+  <view class="coupon-list">
+    <view class="coupon-card {{item.status}}" wx:for="{{coupons}}" wx:key="id">
+      <view class="coupon-left" style="background-color: {{item.status === 'unused' ? item.color : '#cbd5e1'}}">
+        <view class="amount-wrapper">
+          <text class="symbol">¥</text>
+          <text class="amount">{{item.amount}}</text>
+        </view>
+        <text class="condition">{{item.condition}}</text>
+      </view>
+      <view class="coupon-right">
+        <view class="info">
+          <text class="name">{{item.name}}</text>
+          <text class="expiry">有效期至 {{item.expiry}}</text>
+        </view>
+        <view class="action-btn {{item.status}}" bindtap="handleUse" wx:if="{{item.status === 'unused'}}">去使用</view>
+        <view class="status-text" wx:else>已使用</view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="footer-btn">
+    <button class="market-btn" bindtap="goToMarket">领取更多好券</button>
+  </view>
+</view>

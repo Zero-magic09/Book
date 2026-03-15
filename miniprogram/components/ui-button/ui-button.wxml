@@ -1,0 +1,8 @@
+<button 
+  class="btn btn-{{variant}} {{className}} {{disabled ? 'opacity-50' : ''}}" 
+  bindtap="onTap"
+  disabled="{{disabled}}"
+  hover-class="btn-hover-{{variant}}"
+>
+  <slot></slot>
+</button>

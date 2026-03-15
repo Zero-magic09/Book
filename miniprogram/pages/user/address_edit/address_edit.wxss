@@ -1,0 +1,60 @@
+.container {
+    padding: 20rpx;
+    background-color: #f8fafc;
+    min-height: 100vh;
+}
+
+.form-group {
+    background: #fff;
+    border-radius: 16rpx;
+    padding: 0 30rpx;
+    margin-bottom: 30rpx;
+}
+
+.form-item {
+    display: flex;
+    align-items: center;
+    padding: 30rpx 0;
+    border-bottom: 1rpx solid #f1f5f9;
+}
+
+.form-item:last-child {
+    border-bottom: none;
+}
+
+.label {
+    width: 180rpx;
+    font-size: 30rpx;
+    color: #334155;
+}
+
+.input, .picker {
+    flex: 1;
+    font-size: 30rpx;
+    color: #0f172a;
+}
+
+.textarea {
+    flex: 1;
+    height: 100rpx;
+    font-size: 30rpx;
+    color: #0f172a;
+    padding-top: 10rpx;
+}
+
+.switch-item {
+    justify-content: space-between;
+}
+
+.footer-btn {
+    margin-top: 60rpx;
+    padding: 0 20rpx;
+}
+
+.save-btn {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #fff;
+    border-radius: 50rpx;
+    font-size: 32rpx;
+    font-weight: bold;
+}

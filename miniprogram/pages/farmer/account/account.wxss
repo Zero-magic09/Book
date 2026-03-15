@@ -1,0 +1,353 @@
+/** pages/farmer/account/account.wxss **/
+.container {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  padding: 32rpx;
+}
+
+/* Balance Card */
+.balance-card {
+  margin-bottom: 40rpx;
+}
+
+.balance-bg {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  border-radius: 40rpx;
+  padding: 48rpx;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10rpx 30rpx rgba(5, 150, 105, 0.3);
+}
+
+.balance-label {
+  font-size: 26rpx;
+  opacity: 0.8;
+  margin-bottom: 16rpx;
+}
+
+.balance-val {
+  font-size: 64rpx;
+  font-weight: 700;
+  margin-bottom: 40rpx;
+}
+
+.symbol {
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.withdraw-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 2rpx solid rgba(255, 255, 255, 0.3);
+  text-align: center;
+  padding: 20rpx;
+  border-radius: 20rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.bg-icon {
+  position: absolute;
+  top: -20rpx;
+  right: -20rpx;
+  font-size: 240rpx;
+  opacity: 0.1;
+  font-weight: 900;
+  pointer-events: none;
+}
+
+/* Section Header */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+  padding: 0 8rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.add-action {
+  font-size: 26rpx;
+  color: #059669;
+  font-weight: 600;
+}
+
+/* Account List */
+.account-list {
+  margin-bottom: 40rpx;
+}
+
+.account-card {
+  background-color: #fff;
+  border-radius: 32rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.02);
+}
+
+.account-icon-box {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+}
+
+.account-icon-box.bank {
+  background-color: #f1f5f9; /* Generic bank gray */
+}
+
+.account-icon-box.wechat {
+  background-color: #f8fafc; /* Lighter */
+}
+
+.icon {
+  font-size: 40rpx;
+}
+
+.account-info {
+  flex: 1;
+}
+
+.account-name {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 4rpx;
+}
+
+.account-desc {
+  font-size: 24rpx;
+  color: #94a3b8;
+}
+
+.status-btn {
+  font-size: 24rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 12rpx;
+  font-weight: 600;
+}
+
+.status-btn.verified {
+  background-color: #ecfdf5;
+  color: #059669;
+}
+
+.status-btn.unbind {
+  border: 1rpx solid #e2e8f0;
+  color: #94a3b8;
+}
+
+/* Info Box */
+.info-box {
+  background-color: #fffbeb; /* Yellow-50 */
+  border: 2rpx solid #fef3c7;
+  border-radius: 32rpx;
+  padding: 32rpx;
+  display: flex;
+  gap: 24rpx;
+}
+
+.info-icon {
+  font-size: 36rpx;
+}
+
+.info-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #b45309; /* Yellow-700 */
+  margin-bottom: 8rpx;
+}
+
+.info-text {
+  font-size: 24rpx;
+  color: #d97706; /* Yellow-600 */
+  line-height: 1.5;
+}
+
+.empty-tip {
+  text-align: center;
+  color: #94a3b8;
+  padding: 40rpx;
+  font-size: 28rpx;
+}
+
+.status-btn.delete {
+    background-color: #fee2e2;
+    color: #ef4444;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: flex-end; /* Mobile style modal: slides from bottom */
+  justify-content: center;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-content {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 40rpx 40rpx 0 0;
+  padding: 40rpx;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.show .modal-content {
+  transform: translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.modal-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.close-icon {
+  font-size: 48rpx;
+  color: #94a3b8;
+  padding: 10rpx;
+}
+
+.withdraw-amount-section {
+  background-color: #f8fafc;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 32rpx;
+}
+
+.input-label {
+  font-size: 26rpx;
+  color: #64748b;
+  margin-bottom: 24rpx;
+}
+
+.amount-input-box {
+  display: flex;
+  align-items: center;
+  border-bottom: 2rpx solid #e2e8f0;
+  padding-bottom: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+.currency {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #1e293b;
+  margin-right: 12rpx;
+}
+
+.amount-input {
+  flex: 1;
+  font-size: 60rpx;
+  font-weight: 700;
+  height: 80rpx;
+  color: #1e293b;
+}
+
+.ph-style {
+  color: #cbd5e1;
+  font-size: 48rpx;
+}
+
+.balance-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  color: #94a3b8;
+}
+
+.all-btn {
+  color: #059669;
+  font-weight: 600;
+  padding: 0 10rpx;
+}
+
+.account-select-section {
+  margin-bottom: 40rpx;
+}
+
+.selected-account {
+  font-size: 28rpx;
+  color: #334155;
+  background-color: #f1f5f9;
+  padding: 24rpx;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.arrow {
+  font-size: 24rpx;
+  color: #94a3b8;
+}
+
+.form-item {
+  margin-bottom: 32rpx;
+}
+
+.form-input {
+  background-color: #f8fafc;
+  border: 2rpx solid #e2e8f0;
+  border-radius: 20rpx;
+  height: 90rpx;
+  padding: 0 32rpx;
+  font-size: 30rpx;
+  color: #1e293b;
+}
+
+.modal-footer {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.confirm-btn {
+  background-color: #e2e8f0;
+  color: #94a3b8;
+  border-radius: 24rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+
+.confirm-btn.active {
+  background-color: #10b981;
+  color: #fff;
+  box-shadow: 0 8rpx 20rpx rgba(16, 185, 129, 0.2);
+}

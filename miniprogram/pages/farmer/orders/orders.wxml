@@ -1,0 +1,65 @@
+<view class="container">
+  
+  <view class="top-bar">
+    <view class="filter-pills">
+      <view class="pill {{activeTabOrder === index ? 'pill-active' : ''}}" 
+            wx:for="{{tabs}}" wx:key="id" 
+            bindtap="handleTabClick" 
+            data-index="{{index}}">
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+
+  <view class="order-list">
+    <block wx:for="{{filteredOrders}}" wx:key="id">
+      <view class="order-card">
+        <!-- Card Header -->
+        <view class="card-header">
+          <text class="order-id"># {{item.id}}</text>
+          <text class="status-tag status-{{item.status}}">{{item.statusText}}</text>
+        </view>
+
+        <!-- Product Items -->
+        <view class="product-item" wx:for="{{item.products}}" wx:key="name" wx:for-item="prod">
+          <image class="product-img" src="{{prod.image}}" mode="aspectFill" />
+          <view class="info-col">
+            <view class="prod-name-row">
+              <text class="prod-name">{{prod.name}}</text>
+              <text class="prod-price">¥{{prod.price}}</text>
+            </view>
+            <view class="prod-specs">
+              <text>数量: {{prod.quantity}}</text>
+            </view>
+          </view>
+        </view>
+        
+        <!-- Order Summary & Address -->
+        <view class="order-footer-info">
+          <view class="total-summary">
+            <text class="summary-label">合计:</text>
+            <text class="summary-val">¥{{item.total}}</text>
+          </view>
+          <view class="prod-loc">
+            <text class="icon-loc">📍</text>
+            <text class="loc-text">{{item.address}}</text>
+          </view>
+        </view>
+
+        <!-- Action Footer -->
+        <view class="action-footer" wx:if="{{item.status === 'PAID'}}">
+           <view class="btn btn-outline" bindtap="handleContact">联系买家</view>
+           <view class="btn btn-filled" bindtap="handleShip" data-id="{{item.orderId}}">立即发货</view>
+        </view>
+      </view>
+    </block>
+    
+    <!-- 暂无数据 -->
+    <view class="empty-state" wx:if="{{filteredOrders.length === 0}}">
+      <text class="empty-icon">📋</text>
+      <text class="empty-text">暂无订单</text>
+    </view>
+  </view>
+
+  <ui-tabbar activeTab="{{activeTab}}" items="{{tabItems}}" bind:select="handleTabSelect" />
+</view>

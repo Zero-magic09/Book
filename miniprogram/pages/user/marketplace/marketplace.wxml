@@ -1,0 +1,79 @@
+<wxs src="../../../utils/utils.wxs" module="utils" />
+
+<view class="container">
+  <!-- Header with Logo and Search -->
+  <view class="top-bar">
+    <view class="logo-icon"></view>
+    <view class="search-container">
+      <input class="search-input" placeholder="寻找家乡的地道原味..." />
+    </view>
+    <view class="user-icon">👤</view>
+  </view>
+
+  <!-- Category Tabs -->
+  <view class="category-tabs">
+    <view class="tab {{activeCategory === 0 ? 'active' : ''}}" bindtap="switchTab" data-index="0">
+      <text>产地直供</text>
+    </view>
+    <view class="tab {{activeCategory === 1 ? 'active' : ''}}" bindtap="switchTab" data-index="1">
+      <text>现摘现发</text>
+    </view>
+    <view class="tab {{activeCategory === 2 ? 'active' : ''}}" bindtap="switchTab" data-index="2">
+      <text>有机认证</text>
+    </view>
+    <view class="tab {{activeCategory === 3 ? 'active' : ''}}" bindtap="switchTab" data-index="3">
+      <text>地域标志</text>
+    </view>
+  </view>
+
+  <!-- Featured Banner -->
+  <view class="featured-banner">
+    <image class="banner-bg" src="{{bannerImage}}" mode="aspectFill" />
+    <view class="banner-overlay">
+      <text class="banner-tag">SEASONAL SPECIAL</text>
+      <text class="banner-title">助农专区·限时补贴</text>
+      <text class="banner-subtitle">直采直卖 现摘现发 新鲜到家</text>
+    </view>
+  </view>
+
+  <!-- Quick Categories -->
+  <view class="quick-categories">
+    <view class="category-item" wx:for="{{categories}}" wx:key="id" bindtap="selectCategory" data-id="{{item.id}}">
+      <view class="category-icon">{{item.icon}}</view>
+      <text class="category-name">{{item.name}}</text>
+    </view>
+  </view>
+
+  <!-- Section Title -->
+  <view class="section-header">
+    <text class="section-title">为您精选</text>
+  </view>
+
+  <!-- Product Grid -->
+  <view class="product-grid">
+    <view class="product-card" wx:for="{{products}}" wx:key="id" bindtap="viewProduct" data-id="{{item.id}}">
+      <view class="product-image-wrapper">
+        <image class="product-image" src="{{utils.formatImageURL(item.image)}}" mode="aspectFill" />
+        <view class="product-badge-container">
+          <view wx:for="{{item.badges}}" wx:for-item="badge" wx:key="*this" class="product-badge">{{badge}}</view>
+        </view>
+      </view>
+      <view class="product-info">
+        <text class="product-name">{{item.name}}</text>
+        <view class="row-between">
+          <text class="product-origin">{{item.origin}} · {{item.farmer.farmName || '自营'}}</text>
+          <view class="fav-btn" catchtap="toggleFavorite" data-id="{{item.id}}" data-index="{{index}}">
+            {{item.isFavorited ? '❤️' : '🤍'}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 无数据展示 -->
+    <view wx:if="{{products.length === 0}}" class="empty-state">
+      <text class="empty-icon">🌱</text>
+      <text class="empty-text">暂时没有商品上架</text>
+    </view>
+  </view>
+  
+  <ui-tabbar activeTab="{{activeTab}}" items="{{tabItems}}" bind:select="handleTabSelect" />
+</view>

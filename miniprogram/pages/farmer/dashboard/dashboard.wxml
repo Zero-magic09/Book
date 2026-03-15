@@ -1,0 +1,82 @@
+<view class="container">
+  
+  <!-- Content Area -->
+  <view class="content">
+    
+    <!-- 1. Farm Profile Card -->
+    <view class="profile-card">
+      <view class="profile-info">
+        <view class="avatar-wrapper">
+          <image class="avatar" src="{{farmerInfo.avatar}}" />
+          <view class="verified-icon" wx:if="{{farmerInfo.verified}}">✓</view>
+        </view>
+        <view class="info-text">
+          <text class="farm-name">{{farmerInfo.name}}</text>
+          <text class="farm-location">{{farmerInfo.location}}</text>
+        </view>
+      </view>
+
+    </view>
+
+    <!-- 2. Stats Row -->
+    <view class="stats-row">
+      <view class="stat-card" wx:for="{{stats}}" wx:key="id" bindtap="handleStatClick" data-id="{{item.id}}">
+        <view class="stat-value" style="color: {{item.color}}">
+          <text class="stat-prefix" wx:if="{{item.prefix}}">{{item.prefix}}</text>{{item.value}}
+        </view>
+        <text class="stat-label">{{item.label}}</text>
+      </view>
+    </view>
+
+    <!-- 3. Action Buttons -->
+    <view class="action-row">
+      <view class="action-btn action-secondary" bindtap="handleAddProduct">
+        <view class="action-icon-box box-green">
+            <text class="action-icon text-green icon-plus">+</text>
+        </view>
+        <text class="action-text text-green">发布农产品</text>
+      </view>
+      
+      <view class="action-btn action-secondary" bindtap="handleUpdateLog">
+        <view class="action-icon-box box-green">
+            <text class="action-icon icon-edit">📝</text>
+        </view>
+        <text class="action-text text-green">更新溯源志</text>
+      </view>
+    </view>
+
+    <!-- 4. Real-time Orders -->
+    <view class="orders-section">
+      <view class="section-header">
+        <text class="section-title">实时订单</text>
+        <text class="view-all" bindtap="viewAllOrders">全部 ></text>
+      </view>
+      
+      <view class="order-list">
+        <block wx:for="{{orders}}" wx:key="id">
+          <view class="order-card">
+            <image class="order-img" src="{{item.image}}" mode="aspectFill" />
+            <view class="order-info">
+              <text class="product-name">{{item.product}}</text>
+              <text class="buyer-info">买家: {{item.buyer}} | {{item.weight}}</text>
+            </view>
+            <view class="order-right">
+              <text class="product-price">¥ {{item.price}}</text>
+              <text class="order-time">{{item.time}}</text>
+            </view>
+          </view>
+        </block>
+        
+        <!-- 暂无数据 -->
+        <view class="empty-state" wx:if="{{orders.length === 0}}">
+          <text class="empty-icon">📭</text>
+          <text class="empty-text">暂无订单</text>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- TabBar -->
+  <ui-tabbar activeTab="{{activeTab}}" items="{{tabItems}}" bind:select="handleTabSelect" />
+</view>

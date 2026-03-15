@@ -1,0 +1,113 @@
+/** pages/auth/login/login.wxss **/
+@import "../../../app.wxss";
+
+/* Global Container */
+.container {
+  min-height: 100vh;
+  background-color: #ecfdf5; /* Solid mint green background */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 120rpx; /* Visual balance */
+  box-sizing: border-box;
+}
+
+/* Header Section */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60rpx;
+}
+
+.logo-box {
+  width: 144rpx;
+  height: 144rpx;
+  background-color: var(--emerald-600);
+  border-radius: 48rpx; /* Smooth rounded corners */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40rpx;
+  box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.25); /* Soft green shadow */
+}
+
+.logo-icon {
+  width: 80rpx;
+  height: 80rpx;
+  background-color: #fff;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8.12,20C13.44,20 18.38,15.92 21,11C18.41,12.42 14.39,13.13 11.23,12.21C13,9 18.5,4 21,2C18,2 14,4.16 11,8.16C8.84,5.43 4.4,4.42 1,4C2.5,9.5 5,14 11,15C12,13 14.5,10.5 17,8Z'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8.12,20C13.44,20 18.38,15.92 21,11C18.41,12.42 14.39,13.13 11.23,12.21C13,9 18.5,4 21,2C18,2 14,4.16 11,8.16C8.84,5.43 4.4,4.42 1,4C2.5,9.5 5,14 11,15C12,13 14.5,10.5 17,8Z'/%3E%3C/svg%3E");
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+}
+
+
+.title {
+  font-size: 44rpx;
+  font-weight: 900;
+  color: #0f172a; /* Slate 900 */
+  letter-spacing: 2rpx;
+  margin-bottom: 12rpx;
+}
+
+.desc {
+  color: #94a3b8; /* Slate 400 */
+  font-size: 26rpx;
+  font-weight: 400;
+  letter-spacing: 2rpx;
+}
+
+/* Form Card */
+.form-card {
+  width: 100%;
+  max-width: 640rpx;
+  background-color: #fff;
+  padding: 64rpx 48rpx;
+  border-radius: 64rpx;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05); /* Very soft shadow */
+  box-sizing: border-box;
+}
+
+.space-y-5 > view + view {
+  margin-top: 56rpx;
+}
+
+.space-y-1 > view + view, .space-y-1 > input {
+  margin-top: 20rpx;
+}
+
+.label {
+  font-size: 26rpx;
+  font-weight: 800;
+  color: #64748b; /* Slate 500 */
+  margin-left: 12rpx;
+}
+
+/* Custom Input Override */
+ui-input .input {
+  background-color: #f8fafc !important; /* Extra light gray */
+  height: 96rpx !important;
+  line-height: 96rpx !important; /* Center text vertically */
+  padding-top: 0 !important; /* Remove vertical padding to rely on line-height/height */
+  padding-bottom: 0 !important;
+  min-height: 96rpx !important; /* Ensure min constraint */
+}
+
+.checkbox {
+  transform: scale(0.85);
+  margin-right: -4rpx;
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.4);
+}
+
+.underline {
+  text-decoration: none !important;
+}

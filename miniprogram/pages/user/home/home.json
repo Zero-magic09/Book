@@ -1,0 +1,9 @@
+{
+    "usingComponents": {
+        "ui-tabbar": "/components/ui-tabbar/ui-tabbar",
+        "ui-card": "/components/ui-card/ui-card",
+        "ui-button": "/components/ui-button/ui-button",
+        "ui-badge": "/components/ui-badge/ui-badge"
+    },
+    "navigationBarTitleText": "个人中心"
+}

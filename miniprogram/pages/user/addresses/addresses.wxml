@@ -1,0 +1,31 @@
+<view class="container">
+  <view class="address-list">
+    <view class="address-card" wx:for="{{addresses}}" wx:key="id" bindtap="handleSelect" bindlongpress="handleLongPress" data-id="{{item.id}}" data-index="{{index}}">
+      <view class="card-left">
+        <view class="user-row">
+          <text class="user-name">{{item.name}}</text>
+          <text class="user-phone">{{item.phone}}</text>
+          <view wx:if="{{item.isDefault}}" class="default-tag">默认</view>
+          <view wx:if="{{item.tag}}" class="custom-tag">{{item.tag}}</view>
+        </view>
+        <view class="address-detail">
+          {{item.province}} {{item.city}} {{item.district}} {{item.detail}}
+        </view>
+      </view>
+      <view class="card-right">
+        <view class="action-btn edit-btn" catchtap="handleEdit" data-id="{{item.id}}">
+          <text class="icon">✎</text>
+        </view>
+        <view class="action-btn delete-btn" catchtap="handleDelete" data-id="{{item.id}}">
+          <text class="icon">🗑️</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer-btn">
+    <view class="add-btn" bindtap="handleAdd">
+      <text class="plus-icon">+</text> 新建收货地址
+    </view>
+  </view>
+</view>

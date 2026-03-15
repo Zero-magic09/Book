@@ -1,0 +1,12 @@
+<input 
+  class="input {{className}}" 
+  value="{{value}}" 
+  type="{{type}}" 
+  password="{{password}}" 
+  placeholder="{{placeholder}}" 
+  placeholder-class="input-placeholder"
+  disabled="{{disabled}}" 
+  bindinput="handleInput"
+  bindfocus="handleFocus"
+  bindblur="handleBlur"
+/>

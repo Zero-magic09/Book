@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "ui-input": "/components/ui-input/ui-input",
+        "ui-button": "/components/ui-button/ui-button"
+    },
+    "navigationBarTitleText": "账号注册"
+}

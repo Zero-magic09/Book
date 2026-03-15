@@ -1,0 +1,98 @@
+<wxs src="../../../utils/utils.wxs" module="utils" />
+
+<view class="container">
+  <!-- Header Removed -->
+
+  <view class="trace-list" wx:if="{{traceRecords.length > 0}}">
+    <view class="trace-card" wx:for="{{traceRecords}}" wx:key="id">
+      <!-- Card Header: Order ID & Status -->
+      <view class="card-header">
+        <text class="order-id">订单编号: {{item.orderId}}</text>
+        <text class="order-status">{{item.status}}</text>
+      </view>
+
+      <!-- Card Content: Image & Info -->
+      <view class="card-content">
+        <image class="product-image" src="{{utils.formatImageURL(item.image)}}" mode="aspectFill"></image>
+        <view class="product-info">
+          <text class="product-name">{{item.productName}}</text>
+          <text class="order-time">下单时间: {{item.orderTime}}</text>
+          <view class="price-row">
+            <text class="product-price">¥{{item.price}}</text>
+            <text class="product-quantity">数量: {{item.quantity}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- Card Footer: Actions -->
+      <view class="card-actions">
+        <view class="btn btn-secondary" bindtap="viewLogistics" data-orderid="{{item.realOrderId}}">物流详情</view>
+        <view class="btn btn-primary" bindtap="viewTraceDetail" data-productid="{{item.productId}}" data-name="{{item.productName}}">
+          <text class="icon-shield">🛡️</text> 查看全程溯源
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <text class="empty-icon">📦</text>
+    <text class="empty-text">暂无订单记录</text>
+    <text class="empty-hint">购买商品后可查看订单溯源信息</text>
+  </view>
+
+  <ui-tabbar activeTab="{{activeTab}}" items="{{tabItems}}" bind:select="handleTabSelect" />
+
+  <!-- Traceability Modal -->
+  <view class="modal-mask" wx:if="{{showTraceModal}}" bindtap="closeTraceModal">
+    <view class="modal-content" catchtap="true">
+      <view class="modal-header">
+        <text class="modal-title">全程溯源档案</text>
+        <view class="close-btn" bindtap="closeTraceModal">×</view>
+      </view>
+      
+      <scroll-view scroll-y class="modal-body">
+        <!-- Trace Info Header -->
+        <view class="trace-info-header">
+          <view class="info-row">
+            <text class="label">商品名称：</text>
+            <text class="value">{{currentTraceInfo.productName}}</text>
+          </view>
+          <view class="info-row">
+            <text class="label">溯源批次：</text>
+            <text class="value highlight">{{currentTraceInfo.batchNo}}</text>
+          </view>
+           <view class="info-row">
+            <text class="label">产地来源：</text>
+            <text class="value">{{currentTraceInfo.origin}}</text>
+          </view>
+        </view>
+
+        <!-- Timeline -->
+        <view class="timeline-container">
+          <block wx:for="{{currentTraceLogs}}" wx:key="date">
+            <view class="timeline-item">
+              <view class="timeline-left">
+                <view class="timeline-dot"></view>
+                <view class="timeline-line" wx:if="{{index < currentTraceLogs.length - 1}}"></view>
+              </view>
+              <view class="timeline-content">
+                <view class="log-card">
+                  <view class="log-header">
+                    <text class="log-type">{{item.type}}</text>
+                    <text class="log-date">{{item.date}}</text>
+                  </view>
+                  <text class="log-desc">{{item.content}}</text>
+                </view>
+              </view>
+            </view>
+          </block>
+        </view>
+
+        <view class="security-footer">
+          <text class="icon-shield">🛡️</text>
+          <text>数据已上链存证，真实不可篡改</text>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

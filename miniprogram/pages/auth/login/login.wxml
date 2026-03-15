@@ -1,0 +1,61 @@
+<view class="container px-6 py-8 animate-fade-in">
+
+
+  <!-- Header -->
+  <view class="header mb-10 text-center">
+    <view class="logo-box">
+      <!-- SVG Placeholder -->
+      <view class="logo-icon"></view>
+    </view>
+    <view class="title">{{title}}</view>
+    <view class="desc">欢迎回到乡味直达</view>
+  </view>
+
+  <!-- Login Form -->
+  <view class="form-card space-y-5">
+    <!-- Account Input -->
+    <view class="space-y-1">
+      <text class="label">账号 / 手机号</text>
+      <ui-input 
+        placeholder="请输入您的登录账号" 
+        data-field="account"
+        bindinput="handleInput"
+      />
+    </view>
+
+    <!-- Password Input -->
+    <view class="space-y-1">
+      <text class="label">安全密码</text>
+      <ui-input 
+        type="password" 
+        password="{{true}}"
+        placeholder="请输入您的密码" 
+        data-field="password"
+        bindinput="handleInput"
+      />
+    </view>
+
+    <!-- Remember Me / Forgot Password -->
+    <view class="flex justify-between items-center text-xs font-medium px-1">
+      <label class="flex items-center text-slate-400">
+        <checkbox class="checkbox" color="#059669" scale="0.7"/> 记住登录
+      </label>
+      <view class="text-emerald-600">忘记密码？</view>
+    </view>
+
+    <!-- Login Button -->
+    <view class="mt-2">
+      <ui-button bindclick="handleSubmit" disabled="{{loading}}" className="shadow-lg">
+        {{loading ? '身份校验中...' : '立即登录'}}
+      </ui-button>
+    </view>
+  </view>
+
+  <!-- Register Link (Not for Admin) -->
+  <block wx:if="{{role !== 'ADMIN'}}">
+    <view class="text-center text-sm" style="margin-top: 58rpx;">
+      <text class="text-slate-400 font-light">还没有账号？</text>
+      <text class="text-emerald-600 font-bold ml-2 underline" bindtap="handleRegister">立即注册申请</text>
+    </view>
+  </block>
+</view>

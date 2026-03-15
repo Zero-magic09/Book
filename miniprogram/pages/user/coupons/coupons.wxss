@@ -1,0 +1,131 @@
+/** pages/user/coupons/coupons.wxss **/
+.container {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  padding: 32rpx;
+  padding-bottom: 120rpx;
+}
+
+.footer-btn {
+  padding: 30rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  box-shadow: 0 -2rpx 10rpx rgba(0,0,0,0.05);
+}
+.market-btn {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+  border-radius: 50rpx;
+  font-weight: bold;
+}
+
+.coupon-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.coupon-card {
+  display: flex;
+  background-color: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  height: 200rpx;
+}
+
+.coupon-left {
+  width: 200rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 16rpx;
+  position: relative;
+}
+
+/* Sawtooth effect using radial gradient override or simple border could be complex, keeping simple for now */
+.coupon-left::after {
+  content: '';
+  position: absolute;
+  right: -12rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24rpx;
+  height: 24rpx;
+  background-color: #f8fafc;
+  border-radius: 50%;
+}
+
+.amount-wrapper {
+  display: flex;
+  align-items: baseline;
+}
+
+.symbol {
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.amount {
+  font-size: 64rpx;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.condition {
+  font-size: 24rpx;
+  margin-top: 8rpx;
+  opacity: 0.9;
+}
+
+.coupon-right {
+  flex: 1;
+  padding: 24rpx 32rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.name {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 12rpx;
+}
+
+.expiry {
+  font-size: 24rpx;
+  color: #94a3b8;
+}
+
+.action-btn {
+  padding: 12rpx 24rpx;
+  background-color: #ef4444;
+  color: #fff;
+  font-size: 26rpx;
+  border-radius: 32rpx;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.status-text {
+  /* Common styles for used/expired */
+  color: #cbd5e1;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.coupon-card.used .name {
+  color: #94a3b8;
+}

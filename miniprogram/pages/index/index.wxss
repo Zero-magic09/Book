@@ -1,0 +1,190 @@
+/** pages/index/index.wxss **/
+@import "../../app.wxss";
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(236, 253, 245, 0.5); /* bg-emerald-50/50 */
+  padding: 80rpx 48rpx;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+/* Header Section */
+.header-section {
+  margin-top: 168rpx;
+  margin-bottom: 112rpx; /* mb-14 */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-box {
+  width: 160rpx; /* w-20 ~ 80px */
+  height: 160rpx;
+  background-color: var(--emerald-600);
+  border-radius: 64rpx; /* rounded-[2rem] */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 48rpx;
+  box-shadow: 0 10px 15px -3px rgba(167, 243, 208, 0.5); /* shadow-emerald-200 */
+  transform: rotate(6deg);
+}
+
+
+.logo-icon {
+  width: 80rpx;
+  height: 80rpx;
+  background-color: #fff;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8.12,20C13.44,20 18.38,15.92 21,11C18.41,12.42 14.39,13.13 11.23,12.21C13,9 18.5,4 21,2C18,2 14,4.16 11,8.16C8.84,5.43 4.4,4.42 1,4C2.5,9.5 5,14 11,15C12,13 14.5,10.5 17,8Z'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8.12,20C13.44,20 18.38,15.92 21,11C18.41,12.42 14.39,13.13 11.23,12.21C13,9 18.5,4 21,2C18,2 14,4.16 11,8.16C8.84,5.43 4.4,4.42 1,4C2.5,9.5 5,14 11,15C12,13 14.5,10.5 17,8Z'/%3E%3C/svg%3E");
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+  transform: rotate(-6deg);
+}
+
+
+.title {
+  font-size: 60rpx;
+  font-weight: 900;
+  color: var(--slate-800);
+  letter-spacing: -0.025em;
+}
+
+.divider {
+  height: 8rpx;
+  width: 64rpx;
+  background-color: rgba(16, 185, 129, 0.4);
+  margin-top: 24rpx;
+  margin-bottom: 24rpx;
+  border-radius: 9999rpx;
+}
+
+.subtitle {
+  color: rgba(4, 120, 87, 0.6);
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+/* Role List */
+.role-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40rpx; /* space-y-5 -> 20px */
+}
+
+.role-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 40rpx; /* p-5 */
+  border-radius: 70rpx; /* rounded-[2.2rem] ~ 35px */
+  background-color: #fff;
+  border-width: 2rpx;
+  border-style: solid;
+  border-color: transparent; /* overridden by classes */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.role-card-hover {
+  transform: scale(0.98);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.border-emerald-100 { border-color: rgba(209, 250, 229, 0.5); }
+.border-amber-100 { border-color: rgba(254, 243, 199, 0.5); }
+.border-blue-100 { border-color: rgba(219, 234, 254, 0.5); }
+
+.role-icon-box {
+  width: 112rpx; /* w-14 */
+  height: 112rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 32rpx; /* rounded-2xl */
+  font-size: 48rpx; /* text-2xl */
+  margin-right: 32rpx; /* mr-4 */
+}
+
+.bg-emerald-100 { background-color: rgba(209, 250, 229, 0.8); }
+.bg-amber-100 { background-color: rgba(254, 243, 199, 0.8); }
+.bg-blue-100 { background-color: rgba(219, 234, 254, 0.8); }
+
+.role-info {
+  flex: 1;
+  text-align: left;
+}
+
+.role-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #334155; /* slate-700 */
+}
+
+.role-desc {
+  color: var(--slate-400);
+  font-size: 24rpx; /* text-xs */
+  margin-top: 8rpx;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+.role-arrow {
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999rpx;
+  background-color: rgba(236, 253, 245, 0.5); /* bg-emerald-50/50 */
+}
+
+.arrow-icon {
+  color: var(--emerald-300); /* text-emerald-300 */
+  font-family: monospace;
+  font-weight: bold;
+}
+
+/* Footer Decoration */
+.footer-decoration {
+  margin-top: auto;
+  padding-top: 80rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.6;
+}
+
+.dots {
+  display: flex;
+  gap: 12rpx;
+  margin-bottom: 32rpx;
+}
+
+.dot {
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 9999rpx;
+}
+
+.dot-1 { background-color: var(--emerald-200); }
+.dot-2 { background-color: var(--emerald-400); }
+.dot-3 { background-color: var(--emerald-200); }
+
+.footer-text {
+  font-size: 18rpx; /* text-[9px] */
+  color: rgba(6, 95, 70, 0.5); /* text-emerald-800/50 */
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}

@@ -1,0 +1,45 @@
+/* components/ui-tabbar/ui-tabbar.wxss */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+.tab-bar-content {
+  height: 64px;
+  background-color: #ffffff;
+  display: flex;
+  border-top: 1rpx solid #e5e7eb;
+}
+
+.safe-area-patch {
+  width: 100%;
+  height: env(safe-area-inset-bottom);
+  background-color: #ffffff;
+}
+
+.tab-bar-item {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.tab-bar-icon {
+  width: 27px;
+  height: 27px;
+  margin-bottom: 6px;
+}
+
+.tab-bar-text-icon {
+    font-size: 24px;
+    margin-bottom: 2px;
+}
+
+.tab-bar-text {
+  font-size: 10px;
+}

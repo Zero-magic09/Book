@@ -1,0 +1,95 @@
+/* pages/common/personal-info/personal-info.wxss */
+page {
+  background-color: #f8fafc;
+}
+
+.container {
+  padding: 40rpx 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60rpx;
+  position: relative;
+}
+
+.avatar {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  border: 6rpx solid #fff;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20rpx;
+  background-color: #e2e8f0;
+}
+
+.edit-hint {
+  font-size: 26rpx;
+  color: #64748b;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 8rpx 24rpx;
+  border-radius: 30rpx;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  font-weight: 500;
+}
+
+.form-card {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 24rpx;
+  padding: 0 32rpx;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  margin-bottom: 80rpx;
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 110rpx;
+}
+
+.label {
+  font-size: 30rpx;
+  color: #334155;
+  font-weight: 500;
+  width: 180rpx;
+}
+
+.input-text {
+  flex: 1;
+  text-align: right;
+  font-size: 30rpx;
+  color: #0f172a;
+  height: 100%;
+}
+
+.read-only-text {
+  font-size: 30rpx;
+  color: #94a3b8;
+}
+
+.tag {
+  color: #059669;
+  background-color: #ecfdf5;
+  padding: 8rpx 20rpx;
+  border-radius: 8rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+.divider {
+  height: 1rpx;
+  background-color: #f1f5f9;
+  width: 100%;
+}
+
+.btn-area {
+  width: 100%;
+  padding: 0 20rpx;
+}

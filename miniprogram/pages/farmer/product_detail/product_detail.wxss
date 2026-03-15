@@ -1,0 +1,183 @@
+/* pages/farmer/product_detail/product_detail.wxss */
+.container {
+  min-height: 100vh;
+  background-color: #f7f9fc;
+  padding: 32rpx;
+  padding-bottom: 200rpx;
+}
+
+/* 1. Hero Image */
+.hero-card {
+  width: 100%;
+  height: 500rpx;
+  background: #f3f4f6;
+  overflow: hidden;
+}
+
+.hero-swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+}
+
+/* 2. Alert Card */
+.alert-card {
+  background-color: #fffbeb; /* Amber-50 */
+  border: 2rpx solid #fef3c7; /* Amber-100 */
+  border-radius: 40rpx;
+  padding: 32rpx;
+  display: flex;
+  gap: 24rpx;
+  align-items: flex-start;
+  margin-bottom: 32rpx;
+}
+
+.alert-icon-box {
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alert-icon {
+  font-size: 40rpx;
+}
+
+.alert-content {
+  flex: 1;
+}
+
+.alert-title {
+  font-size: 28rpx;
+  font-weight: 900;
+  color: #1e293b;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.alert-msg {
+  font-size: 24rpx;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+/* 3. Stats Row */
+.stats-row {
+  display: flex;
+  background-color: #fff;
+  border-radius: 40rpx;
+  padding: 40rpx 0;
+  margin-bottom: 32rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.02);
+}
+
+.stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #94a3b8; /* Slate-400 */
+  margin-bottom: 12rpx;
+}
+
+.stat-val-box {
+  display: flex;
+  align-items: baseline;
+}
+
+.stat-val {
+  font-size: 44rpx;
+  font-weight: 900;
+  color: #1e293b;
+  margin-right: 4rpx;
+}
+
+.stat-unit {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.text-green { color: #10b981; }
+
+.stat-divider {
+  width: 2rpx;
+  background-color: #f1f5f9;
+}
+
+/* 4. Info List */
+.info-card {
+  background-color: #fff;
+  border-radius: 40rpx;
+  padding: 0 40rpx;
+  margin-bottom: 32rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.02);
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40rpx 0;
+}
+
+.divider {
+  height: 2rpx;
+  background-color: #f8fafc;
+}
+
+.info-label {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #94a3b8; /* Slate-400 */
+}
+
+.info-val {
+  font-size: 28rpx;
+  color: #1e293b;
+}
+
+.font-bold { font-weight: 900; }
+.text-emerald { color: #10b981; font-weight: 700; }
+.text-price { color: #f43f5e; font-weight: 900; }
+
+/* 5. Footer Buttons */
+.action-footer {
+  display: flex;
+  gap: 24rpx;
+  margin-top: 48rpx;
+}
+
+.btn {
+  flex: 1;
+  height: 96rpx;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx; /* sm */
+  font-weight: 900;
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #10b981;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.btn-dark {
+  background-color: #1e293b; /* Slate-800 confirm */
+  color: #fff;
+  box-shadow: 0 4rpx 12rpx rgba(30, 41, 59, 0.3);
+}

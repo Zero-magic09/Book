@@ -1,0 +1,141 @@
+<view class="container">
+  <view class="tabs">
+    <view class="tab-item {{activeTab === index ? 'active' : ''}}" wx:for="{{tabs}}" wx:key="id" bindtap="handleTabClick" data-index="{{index}}">
+      {{item.name}}
+      <view class="tab-line" wx:if="{{activeTab === index}}"></view>
+    </view>
+  </view>
+
+  <!-- Review Sub-filter -->
+  <view class="sub-tabs" wx:if="{{activeTab === 4}}">
+    <view class="sub-tab {{reviewFilter === 'pending' ? 'active' : ''}}" bindtap="handleReviewFilter" data-filter="pending">待评价</view>
+    <view class="sub-tab {{reviewFilter === 'completed' ? 'active' : ''}}" bindtap="handleReviewFilter" data-filter="completed">已评价</view>
+  </view>
+
+  <view class="order-list {{activeTab === 4 ? 'has-sub-tabs' : ''}}" wx:if="{{filteredOrders.length > 0}}">
+    <view class="order-card" wx:for="{{filteredOrders}}" wx:key="id">
+      <view class="card-header">
+        <view class="order-no-capsule">订单号: {{item.id}}</view>
+        <text class="order-status">{{item.statusText}}</text>
+      </view>
+      
+      <view class="product-item" wx:for="{{item.products}}" wx:key="name" wx:for-item="prod">
+        <image class="prod-img" src="{{prod.image}}" mode="aspectFill" />
+        <view class="prod-info">
+          <text class="prod-name">{{prod.name}}</text>
+          <view class="prod-bottom">
+            <text class="prod-price">¥{{prod.price}}</text>
+            <text class="prod-count">x{{prod.count}}</text>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 收货地址 -->
+      <view class="order-address-info" wx:if="{{item.address}}">
+        <block wx:if="{{item.status !== 'payment'}}">
+          <view class="address-row">
+              <text class="address-label">下单用户：</text>
+              <text class="address-value">{{item.address.name || '用户'}}</text>
+          </view>
+          <view class="address-row">
+              <text class="address-label">联系方式：</text>
+              <text class="address-value">{{item.address.phone || '暂无'}}</text>
+          </view>
+          <view class="address-row">
+              <text class="address-label">详细地址：</text>
+              <text class="address-value">{{item.address.address || item.address}}</text>
+          </view>
+        </block>
+        <block wx:else>
+           <view class="address-placeholder">
+             <text>⌛ 支付完成后显示收货信息</text>
+           </view>
+        </block>
+      </view>
+      
+      <view class="card-footer">
+        <text class="total-text">合计: ¥{{item.total}}</text>
+        
+        <view class="btn-group">
+          <view class="btn btn-outline" wx:if="{{item.status === 'payment'}}" bindtap="handleCancel" data-id="{{item.orderId}}">取消订单</view>
+          <view class="btn btn-outline" wx:if="{{item.status === 'shipment' || item.status === 'receipt'}}" bindtap="handleTrace" data-id="{{item.orderId}}">查看物流</view>
+          <view class="btn btn-primary" wx:if="{{item.status === 'payment'}}" bindtap="handlePay" data-id="{{item.orderId}}">去支付</view>
+          <view class="btn btn-primary" wx:if="{{item.status === 'receipt'}}" bindtap="handleConfirm" data-id="{{item.orderId}}">确认收货</view>
+          <view class="btn btn-primary" wx:if="{{item.status === 'review'}}" bindtap="handleComment" data-id="{{item.orderId}}">去评价</view>
+          <view class="btn btn-outline" wx:if="{{item.status === 'completed' && item.reviewed}}" bindtap="handleViewReview" data-order-id="{{item.orderId}}" data-order-no="{{item.id}}">查看评价</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <text class="empty-icon">📦</text>
+    <text class="empty-text">暂无相关订单</text>
+    <text class="empty-hint">快去逛逛集市吧~</text>
+  </view>
+
+  <!-- 评价详情弹窗 -->
+  <view class="review-modal-mask" wx:if="{{showReviewModal}}" bindtap="closeReviewModal"></view>
+  <view class="review-modal" wx:if="{{showReviewModal}}">
+    <view class="modal-header">
+      <view class="header-left">
+        <text class="modal-title">评价详情</text>
+        <view class="modal-id-capsule" wx:if="{{currentOrderNo}}">
+          订单号: {{currentOrderNo}}
+        </view>
+      </view>
+      <view class="modal-close-btn" bindtap="closeReviewModal">
+        <text class="modal-close-icon">✕</text>
+      </view>
+    </view>
+
+    <scroll-view class="modal-content" scroll-y>
+      <view class="review-card" wx:for="{{currentReviews}}" wx:key="id">
+        <!-- 商品信息头 -->
+        <view class="review-product-bar" wx:if="{{item.productName}}">
+          <image class="mini-prod-img" src="{{item.productImage || 'https://picsum.photos/seed/product/50/50'}}" mode="aspectFill" />
+          <text class="review-product-name">{{item.productName}}</text>
+        </view>
+        
+        <!-- 买家评价卡片 -->
+        <view class="review-bubble buyer-bubble">
+          <view class="bubble-header">
+            <view class="user-info">
+              <view class="user-avatar-mini">👤</view>
+              <text class="user-label">我的评价</text>
+            </view>
+            <view class="rating-stars">
+              <text class="star {{s < item.rating ? 'active' : ''}}" wx:for="{{5}}" wx:key="*this" wx:for-item="s">★</text>
+              <text class="rating-num">{{item.rating}}分</text>
+            </view>
+          </view>
+          
+          <view class="bubble-body">
+            <text class="review-text-content">{{item.content || '客户未填写评价内容'}}</text>
+            <view class="review-image-grid" wx:if="{{item.images && item.images.length > 0}}">
+              <image wx:for="{{item.images}}" wx:key="*this" wx:for-item="img" src="{{img}}" mode="aspectFill" class="grid-img" bindtap="previewImage" data-src="{{img}}" data-list="{{item.images}}" />
+            </view>
+          </view>
+        </view>
+        
+        <!-- 商家回复卡片 -->
+        <view class="review-bubble seller-bubble">
+          <view class="bubble-header">
+            <view class="user-info">
+              <view class="user-avatar-mini seller-icon">🏪</view>
+              <text class="user-label seller-label">商家回复</text>
+            </view>
+          </view>
+          
+          <view class="bubble-body">
+            <text class="reply-text-content {{!item.reply ? 'empty-reply' : ''}}">{{item.reply || '商家正在快马加鞭赶来回复中...'}}</text>
+          </view>
+        </view>
+      </view>
+      
+      <view class="modal-empty-state" wx:if="{{currentReviews.length === 0}}">
+        <text class="empty-hint">暂无评价记录</text>
+      </view>
+    </scroll-view>
+  </view>
+</view>

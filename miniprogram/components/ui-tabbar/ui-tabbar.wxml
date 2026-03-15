@@ -1,0 +1,14 @@
+<!--components/ui-tabbar/ui-tabbar.wxml-->
+<cover-view class="tab-bar">
+  <cover-view class="tab-bar-content">
+    <cover-view class="tab-bar-border"></cover-view>
+    <cover-view wx:for="{{items}}" wx:key="id" class="tab-bar-item" data-id="{{item.id}}" bindtap="handleSelect">
+      <!-- Handle both icon paths and unicode emojis/text -->
+      <cover-image wx:if="{{item.iconPath}}" src="{{activeTab === item.id ? item.selectedIconPath : item.iconPath}}" class="tab-bar-icon"></cover-image>
+      <cover-view wx:else class="tab-bar-text-icon" style="color: {{activeTab === item.id ? selectedColor : color}}">{{item.icon}}</cover-view>
+      
+      <cover-view class="tab-bar-text" style="color: {{activeTab === item.id ? selectedColor : color}}">{{item.label}}</cover-view>
+    </cover-view>
+  </cover-view>
+  <cover-view class="safe-area-patch"></cover-view>
+</cover-view>

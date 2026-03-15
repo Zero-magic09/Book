@@ -1,0 +1,174 @@
+<wxs src="../../../utils/utils.wxs" module="utils" />
+
+<view class="container">
+  <!-- Product Image (Full Width Top) -->
+  <view class="product-header">
+    <swiper class="product-swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{5000}}" duration="{{500}}" circular="{{true}}" indicator-active-color="#ffffff">
+      <block wx:for="{{product.swiperImages || [utils.formatImageURL(product.image)]}}" wx:key="*this">
+        <swiper-item>
+          <image src="{{item}}" mode="aspectFill" class="product-bg-img" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <!-- Gradient Overlay -->
+    <view class="header-overlay"></view>
+  </view>
+
+  <!-- Main Content Card (Overlapping Image) -->
+  <view class="main-card">
+    <view class="price-row">
+      <view class="price-block">
+        <text class="currency">¥</text>
+        <text class="price-value">{{product.price || '0.00'}}</text>
+        <text class="price-original" wx:if="{{product.originalPrice}}">¥{{product.originalPrice}}</text>
+      </view>
+      <view class="sold-tag">已售 100+</view>
+    </view>
+
+    <view class="product-title">
+      <text class="title-prefix" wx:if="{{product.badge}}">【{{product.badge}}】</text>{{product.name || '商品名称'}}
+    </view>
+
+    <view class="labels-row">
+      <view class="label-tag tag-green" wx:if="{{product.origin}}">{{product.origin}}</view>
+      <view class="label-tag tag-blue">顺丰包邮</view>
+    </view>
+
+    <!-- Tab Navigation -->
+    <view class="tab-bar">
+      <view 
+        class="tab-item {{activeSection === 'info' ? 'active' : ''}}" 
+        bindtap="handleTabSelect" 
+        data-id="info"
+      >
+        溯源信息
+        <view class="active-line" wx:if="{{activeSection === 'info'}}"></view>
+      </view>
+      <view 
+        class="tab-item {{activeSection === 'log' ? 'active' : ''}}" 
+        bindtap="handleTabSelect" 
+        data-id="log"
+      >
+        种植日志
+        <view class="active-line" wx:if="{{activeSection === 'log'}}"></view>
+      </view>
+      <view 
+        class="tab-item {{activeSection === 'story' ? 'active' : ''}}" 
+        bindtap="handleTabSelect" 
+        data-id="story"
+      >
+        农户故事
+        <view class="active-line" wx:if="{{activeSection === 'story'}}"></view>
+      </view>
+    </view>
+    
+    <!-- Divider -->
+    <view class="divider"></view>
+
+    <!-- Content Sections -->
+    <view class="content-area">
+      <!-- Traceability Info -->
+      <block wx:if="{{activeSection === 'info'}}">
+        <view class="info-table" wx:if="{{traceInfo || product}}">
+          <view class="info-row">
+            <text class="info-label">产地位置</text>
+            <text class="info-value">{{traceInfo.origin || product.origin || '暂无信息'}}</text>
+          </view>
+          <view class="info-row">
+            <text class="info-label">生产批次</text>
+            <text class="info-value">{{traceInfo.batchNo || '暂无信息'}}</text>
+          </view>
+          <view class="info-row last">
+            <text class="info-label">种植周期</text>
+            <text class="info-value">{{traceInfo.growthCycle || '自然成熟'}}</text>
+          </view>
+        </view>
+
+        <view class="section-block" wx:if="{{traceInfo.certReport}}">
+          <text class="section-title">营养成分报告 (权威检测)</text>
+          <view class="report-card">
+            <view class="report-icon">📄</view>
+            <view class="report-content">
+              <text class="report-status">无农药残留检测合格</text>
+              <text class="report-meta">检测机构: {{traceInfo.certOrg || '农科院'}}</text>
+            </view>
+            <text class="report-link">查看完整版</text>
+          </view>
+        </view>
+
+
+
+        <view class="empty-state" wx:if="{{!traceInfo && !product}}">
+          <text class="empty-icon">📦</text>
+          <text class="empty-text">暂无溯源信息</text>
+        </view>
+      </block>
+      
+      <!-- Other sections placeholder -->
+      <block wx:elif="{{activeSection === 'log'}}">
+        <view class="timeline-container" wx:if="{{logs.length > 0}}">
+          <block wx:for="{{logs}}" wx:key="date">
+            <view class="timeline-item">
+              <view class="timeline-left">
+                <view class="timeline-dot"></view>
+                <view class="timeline-line" wx:if="{{index < logs.length - 1}}"></view>
+              </view>
+              <view class="timeline-content">
+                <view class="log-card">
+                  <view class="log-header">
+                    <text class="log-type">{{item.type}}</text>
+                    <text class="log-date">{{item.date}}</text>
+                  </view>
+                  <text class="log-desc">{{item.content}}</text>
+                </view>
+              </view>
+            </view>
+          </block>
+        </view>
+        <view class="empty-state" wx:else>
+          <text class="empty-icon">📝</text>
+          <text class="empty-text">暂无种植日志</text>
+          <text class="empty-hint">农户尚未添加种植记录</text>
+        </view>
+      </block>
+      <block wx:elif="{{activeSection === 'story'}}">
+        <view class="story-card" wx:if="{{farmer}}">
+          <view class="story-header">
+            <image src="{{utils.formatImageURL(farmer.avatar)}}" mode="aspectFill" class="farmer-avatar" />
+            <view class="farmer-info">
+              <text class="farmer-name">{{farmer.name}}</text>
+              <text class="farmer-desc">{{farmer.desc}}</text>
+            </view>
+          </view>
+          <text class="story-quote">"{{farmer.quote}}"</text>
+          <view class="story-gallery">
+            <image wx:for="{{farmer.images}}" wx:key="*this" src="{{utils.formatImageURL(item)}}" mode="aspectFill" class="story-img" />
+          </view>
+        </view>
+        <view class="empty-state" wx:else>
+          <text class="empty-icon">👨‍🌾</text>
+          <text class="empty-text">暂无农户信息</text>
+          <text class="empty-hint">该商品暂未关联农户</text>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- Bottom Bar -->
+  <view class="bottom-bar">
+    <view class="action-icons">
+      <view class="icon-item" bindtap="handleHome">
+        <text class="icon">🏪</text>
+        <text class="icon-label">集市</text>
+      </view>
+      <view class="icon-item" bindtap="toggleFavorite">
+        <text class="icon" style="{{product.isFavorited ? 'color: #ff4d4f' : ''}}">{{product.isFavorited ? '❤️' : '🤍'}}</text>
+        <text class="icon-label">{{product.isFavorited ? '已收藏' : '收藏'}}</text>
+      </view>
+    </view>
+    <view class="btn-group">
+      <view class="action-btn btn-cart" bindtap="handleCart">加入购物车</view>
+      <view class="action-btn btn-buy" bindtap="handleBuy">立即下单</view>
+    </view>
+  </view>
+</view>

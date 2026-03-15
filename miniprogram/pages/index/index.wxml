@@ -1,0 +1,45 @@
+<view class="container">
+  <!-- 顶部图标与标题 -->
+  <view class="header-section">
+    <view class="logo-box">
+      <!-- 简单的 SVG 替代方案：使用 pure CSS 或 iconfont，这里使用 Image 或 View 模拟 -->
+      <view class="logo-icon"></view> 
+    </view>
+    <view class="title">乡村农产品直销平台</view>
+    <view class="divider"></view>
+    <view class="subtitle">优质农产品全链路直销平台</view>
+  </view>
+
+  <!-- 角色选择区域 -->
+  <view class="role-list">
+    <block wx:for="{{roles}}" wx:key="type">
+      <view 
+        class="role-card {{item.borderColor}}" 
+        bindtap="handleRoleSelect" 
+        data-path="{{item.path}}"
+        hover-class="role-card-hover"
+      >
+        <view class="role-icon-box {{item.iconBg}} {{item.iconTextColor}}">
+          <text>{{item.icon}}</text>
+        </view>
+        <view class="role-info">
+          <view class="role-title">{{item.title}}</view>
+          <view class="role-desc">{{item.desc}}</view>
+        </view>
+        <view class="role-arrow">
+          <text class="arrow-icon">></text>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 底部装饰 -->
+  <view class="footer-decoration">
+    <view class="dots">
+      <view class="dot dot-1"></view>
+      <view class="dot dot-2"></view>
+      <view class="dot dot-3"></view>
+    </view>
+    <view class="footer-text">Village Direct · Trusted Source</view>
+  </view>
+</view>

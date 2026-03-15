@@ -1,0 +1,79 @@
+<view class="container">
+  
+  <!-- 1. Header Image (Swiper for Multiple) -->
+  <view class="hero-card">
+    <swiper class="hero-swiper" indicator-dots="{{product.images.length > 1}}" autoplay circular>
+      <swiper-item wx:for="{{product.images}}" wx:key="*this">
+        <image class="hero-img" src="{{item}}" mode="aspectFill" />
+      </swiper-item>
+      <swiper-item wx:if="{{product.images.length === 0}}">
+        <image class="hero-img" src="{{product.image}}" mode="aspectFill" />
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 2. Admin Feedback Alert -->
+  <view class="alert-card">
+    <view class="alert-icon-box">
+      <text class="alert-icon">⏳</text>
+    </view>
+    <view class="alert-content">
+      <text class="alert-title">管理后台意见</text>
+      <text class="alert-msg">{{product.feedback}}</text>
+    </view>
+  </view>
+
+  <!-- 3. Stats Row -->
+  <view class="stats-row">
+    <view class="stat-item">
+      <text class="stat-label">当前库存</text>
+      <view class="stat-val-box">
+        <text class="stat-val">{{product.stock}}</text>
+        <text class="stat-unit">{{product.unit}}</text>
+      </view>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-label">累计销量</text>
+      <view class="stat-val-box">
+        <text class="stat-val text-green">{{product.sales}}</text>
+        <text class="stat-unit text-green">单</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 4. Info List -->
+  <view class="info-card">
+    
+    <view class="info-row">
+      <text class="info-label">产品名称</text>
+      <text class="info-val font-bold">{{product.name}}</text>
+    </view>
+    <view class="divider"></view>
+
+    <view class="info-row">
+      <text class="info-label">产地坐标</text>
+      <text class="info-val text-emerald">{{product.coords}}</text>
+    </view>
+    <view class="divider"></view>
+
+    <view class="info-row">
+      <text class="info-label">种植周期</text>
+      <text class="info-val font-bold">{{product.cycle}}</text>
+    </view>
+    <view class="divider"></view>
+
+    <view class="info-row">
+      <text class="info-label">售价</text>
+      <text class="info-val text-price">¥{{product.price}}/{{product.unit}}</text>
+    </view>
+
+  </view>
+
+  <!-- 5. Footer Buttons -->
+  <view class="action-footer">
+    <view class="btn btn-white" bindtap="handleEdit">编辑内容</view>
+    <view class="btn btn-dark" bindtap="handleRefresh">刷新状态</view>
+  </view>
+
+</view>

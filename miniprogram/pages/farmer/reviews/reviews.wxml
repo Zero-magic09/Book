@@ -1,0 +1,48 @@
+<view class="container">
+  <!-- Tabs -->
+  <view class="tabs">
+    <view class="tab-item {{activeTab === 'all' ? 'active' : ''}}" bindtap="handleTabChange" data-tab="all">全部</view>
+    <view class="tab-item {{activeTab === 'pending' ? 'active' : ''}}" bindtap="handleTabChange" data-tab="pending">待回复</view>
+    <view class="tab-item {{activeTab === 'good' ? 'active' : ''}}" bindtap="handleTabChange" data-tab="good">好评</view>
+    <view class="tab-item {{activeTab === 'bad' ? 'active' : ''}}" bindtap="handleTabChange" data-tab="bad">中差评</view>
+  </view>
+
+  <!-- Review List -->
+  <view class="review-list">
+    <view class="review-card" wx:for="{{reviews}}" wx:key="id" wx:if="{{activeTab === 'all' || (activeTab === 'pending' && !item.reply) || (activeTab === 'good' && item.rating >= 4) || (activeTab === 'bad' && item.rating < 4)}}">
+      <view class="card-header">
+        <image class="avatar" src="{{item.avatar}}" />
+        <view class="user-info">
+          <text class="username">{{item.name}}</text>
+          <view class="rating">
+            <text class="rating-star" wx:for="{{5}}" wx:key="*this" wx:for-item="star" style="color: {{index < item.rating ? '#fbbf24' : '#e2e8f0'}};">★</text>
+          </view>
+        </view>
+        <text class="date">{{item.date}}</text>
+      </view>
+
+      <view class="review-content">{{item.content}}</view>
+
+      <view class="review-images" wx:if="{{item.images && item.images.length > 0}}">
+        <image class="review-img" wx:for="{{item.images}}" wx:key="*this" src="{{item}}" mode="aspectFill" />
+      </view>
+
+      <view class="product-tag">产品: {{item.productName}}</view>
+
+      <!-- Reply Section -->
+      <view class="reply-section" wx:if="{{item.reply}}">
+        <view class="reply-box replied">
+          <view class="reply-tag">农场主回复</view>
+          <text class="reply-text">{{item.reply}}</text>
+        </view>
+      </view>
+
+      <view class="reply-section" wx:else>
+        <view class="reply-box input-mode">
+          <input class="reply-input" placeholder="感谢买家的支持吧..." value="{{item.replyInput}}" bindinput="handleReplyInput" data-id="{{item.id}}" />
+          <view class="reply-btn" bindtap="submitReply" data-id="{{item.id}}">回复</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

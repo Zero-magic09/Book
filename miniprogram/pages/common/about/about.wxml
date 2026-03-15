@@ -1,0 +1,36 @@
+<view class="container">
+  <view class="logo-section">
+    <image class="logo" src="/images/logo.png" mode="aspectFit" wx:if="{{hasLogo}}" />
+    <view class="logo-placeholder" wx:if="{{!hasLogo}}">乡</view>
+    <text class="app-name">乡村农产品直销平台</text>
+    <text class="version">Version {{version}}</text>
+  </view>
+
+  <view class="content-section">
+    <view class="cell-group">
+      <view class="cell">
+        <text class="label">功能介绍</text>
+        <text class="arrow">›</text>
+      </view>
+      <view class="cell">
+        <text class="label">用户协议</text>
+        <text class="arrow">›</text>
+      </view>
+      <view class="cell">
+        <text class="label">隐私政策</text>
+        <text class="arrow">›</text>
+      </view>
+    </view>
+
+    <view class="cell-group">
+      <view class="cell" bindtap="handleCopy">
+        <text class="label">联系我们</text>
+        <text class="value">contact@xiangvei.com</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class="footer">
+    <text class="copyright">Copyright © 2024 乡村农产品直销平台 All Rights Reserved.</text>
+  </view>
+</view>

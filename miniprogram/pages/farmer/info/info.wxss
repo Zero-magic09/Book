@@ -1,0 +1,129 @@
+/** pages/farmer/info/info.wxss **/
+.container {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  padding: 32rpx;
+  padding-bottom: 200rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 24rpx;
+  margin-top: 16rpx;
+}
+
+.section-title:first-child {
+  margin-top: 0;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 40rpx;
+  padding: 40rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.02);
+  margin-bottom: 40rpx;
+}
+
+.form-item {
+  margin-bottom: 24rpx;
+}
+
+.form-item:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  font-size: 24rpx;
+  color: #cbd5e1;
+  margin-bottom: 12rpx;
+  font-weight: 600;
+}
+
+.input-text {
+  font-size: 30rpx;
+  color: #334155;
+  width: 100%;
+}
+
+.input-text.bold {
+  font-weight: 700;
+  font-size: 32rpx;
+  color: #1e293b;
+}
+
+.divider {
+  height: 2rpx;
+  background-color: #f1f5f9;
+  margin: 24rpx 0;
+}
+
+.row-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.location-text {
+  font-size: 30rpx;
+  color: #10b981;
+  font-family: monospace;
+  font-weight: 600;
+}
+
+.locate-btn {
+  background-color: #059669;
+  color: #fff;
+  font-size: 24rpx;
+  padding: 12rpx 24rpx;
+  border-radius: 12rpx;
+  font-weight: 600;
+}
+
+/* Story Area */
+.story-area {
+  width: 100%;
+  height: 240rpx;
+  font-size: 28rpx;
+  color: #475569;
+  line-height: 1.6;
+  background-color: #f8fafc;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+
+.edit-icon {
+  text-align: right;
+  color: #94a3b8;
+  font-size: 32rpx;
+  margin-top: -40rpx;
+  margin-right: 20rpx;
+  pointer-events: none;
+}
+
+.submit-btn {
+  background-color: #059669;
+  color: #fff;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 700;
+  padding: 32rpx;
+  border-radius: 24rpx;
+  margin-top: 60rpx;
+  box-shadow: 0 8rpx 24rpx rgba(5, 150, 105, 0.25);
+}
+
+.submit-btn.disabled {
+  background-color: #94a3b8;
+  box-shadow: none;
+}
+
+.reset-btn {
+  color: #64748b;
+  text-align: center;
+  font-size: 28rpx;
+  margin-top: 32rpx;
+  text-decoration: underline;
+}

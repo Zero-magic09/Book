@@ -1,0 +1,6 @@
+<view class="header sticky-top">
+  <view wx:if="{{showBack}}" class="back-btn" bindtap="handleBack">
+    <text class="back-icon">←</text>
+  </view>
+  <text class="title">{{title}}</text>
+</view>

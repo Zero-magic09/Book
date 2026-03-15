@@ -1,0 +1,26 @@
+var formatImageURL = function(url) {
+    if (!url) return 'https://picsum.photos/seed/product/400/300';
+    if (url.indexOf('http') === 0) return url;
+    
+    // 如果是 JSON 数组字符串，尝试解析 (WXS 对 JSON 支持有限，采用字符串截取)
+    if (url.indexOf('[') === 0 && url.indexOf(']') !== -1) {
+        var firstQuote = url.indexOf('"');
+        var secondQuote = url.indexOf('"', firstQuote + 1);
+        if (firstQuote !== -1 && secondQuote !== -1) {
+            url = url.substring(firstQuote + 1, secondQuote);
+        }
+    }
+
+    if (url.indexOf('/uploads/') === 0) {
+        return 'http://127.0.0.1:8080' + url;
+    }
+    if (url.indexOf('uploads/') === 0) {
+        return 'http://127.0.0.1:8080/' + url;
+    }
+    
+    return url;
+};
+
+module.exports = {
+    formatImageURL: formatImageURL
+};

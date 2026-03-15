@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "农户中心",
+    "usingComponents": {
+        "ui-tabbar": "/components/ui-tabbar/ui-tabbar",
+        "ui-card": "/components/ui-card/ui-card"
+    }
+}

@@ -1,0 +1,143 @@
+<view class="container">
+  <view class="amount-card">
+    <text class="label">支付金额</text>
+    <view class="amount">
+      <text class="symbol">¥</text>
+      <text class="value">{{totalAmount}}</text>
+    </view>
+    <view class="order-info" wx:if="{{orderCount > 1}}">
+      共 {{orderCount}} 个订单
+    </view>
+    <view class="order-no" wx:if="{{orderCount === 1 && orders.length > 0}}">
+      订单号：{{orders[0].orderNo}}
+    </view>
+  </view>
+
+  <!-- 多订单列表 -->
+  <view class="orders-list" wx:if="{{orderCount > 1}}">
+    <view class="section-title">订单明细</view>
+    <view class="order-item" wx:for="{{orders}}" wx:key="id">
+      <view class="order-header">
+        <text class="order-no-small">{{item.orderNo}}</text>
+        <text class="order-amount">¥{{item.totalAmount}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 收货地址选择 -->
+  <view class="address-section">
+    <view class="section-title">
+      <text class="title-icon">📍</text>
+      收货地址
+    </view>
+    
+    <!-- 已选择的地址 -->
+    <view class="selected-address" wx:if="{{selectedAddress}}" bindtap="showAddressPicker">
+      <view class="address-content">
+        <view class="address-row">
+          <text class="label-tag">收货人</text>
+          <text class="address-name">{{selectedAddress.name}}</text>
+        </view>
+        <view class="address-row">
+          <text class="label-tag">联系电话</text>
+          <text class="address-phone">{{selectedAddress.phone}}</text>
+        </view>
+        <view class="address-row address-row-full">
+          <text class="label-tag">详细地址</text>
+          <text class="address-detail">{{selectedAddress.fullAddress}}</text>
+        </view>
+      </view>
+      <text class="address-arrow">›</text>
+    </view>
+    
+    <!-- 无地址时的提示 -->
+    <view class="no-address" wx:if="{{!selectedAddress}}" bindtap="showAddressPicker">
+      <text class="no-address-text">请选择收货地址</text>
+      <text class="address-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 地址选择弹窗 -->
+  <view class="address-modal-mask" wx:if="{{showAddressModal}}" bindtap="hideAddressPicker"></view>
+  <view class="address-modal" wx:if="{{showAddressModal}}">
+    <view class="modal-header">
+      <text class="modal-title">选择收货地址</text>
+      <text class="modal-close" bindtap="hideAddressPicker">✕</text>
+    </view>
+    <scroll-view class="modal-body" scroll-y>
+      <!-- 已保存的地址列表 -->
+      <view class="address-list" wx:if="{{addresses.length > 0}}">
+        <view class="address-card {{item.id === selectedAddress.id ? 'selected' : ''}}" 
+              wx:for="{{addresses}}" wx:key="id" 
+              bindtap="selectAddress" data-index="{{index}}">
+          <view class="address-card-main">
+            <text class="card-name">{{item.name}}</text>
+            <text class="card-phone">{{item.phone}}</text>
+            <text class="default-tag" wx:if="{{item.isDefault}}">默认</text>
+          </view>
+          <view class="card-detail">{{item.fullAddress}}</view>
+          <view class="card-check" wx:if="{{item.id === selectedAddress.id}}">✓</view>
+        </view>
+      </view>
+      
+      <!-- 无保存地址时显示 -->
+      <view class="no-saved-address" wx:if="{{addresses.length === 0 && !showManualInput}}">
+        <text class="empty-icon">📭</text>
+        <text class="empty-text">暂无保存的地址</text>
+      </view>
+      
+      <!-- 手动填写地址 -->
+      <view class="manual-input-section">
+        <view class="manual-toggle" bindtap="toggleManualInput">
+          <text class="toggle-icon">{{showManualInput ? '▼' : '▶'}}</text>
+          <text>手动填写新地址</text>
+        </view>
+        
+        <view class="manual-form" wx:if="{{showManualInput}}">
+          <view class="form-item">
+            <view class="form-label">收货人</view>
+            <input class="form-input" placeholder="请输入姓名" 
+                   value="{{manualAddress.name}}" bindinput="onManualInput" data-field="name"/>
+          </view>
+          <view class="form-item">
+            <view class="form-label">手机号</view>
+            <input class="form-input" type="number" placeholder="请输入手机号" 
+                   value="{{manualAddress.phone}}" bindinput="onManualInput" data-field="phone"/>
+          </view>
+          <view class="form-item">
+            <view class="form-label">省市区</view>
+            <picker class="form-picker" mode="region" bindchange="onRegionChange" value="{{manualAddress.region}}">
+              <view class="picker-text">
+                {{manualAddress.region[0] ? manualAddress.region[0] + ' ' + manualAddress.region[1] + ' ' + manualAddress.region[2] : '请选择省市区'}}
+              </view>
+            </picker>
+          </view>
+          <view class="form-item">
+            <view class="form-label">详细地址</view>
+            <input class="form-input" placeholder="街道、门牌号等" 
+                   value="{{manualAddress.detail}}" bindinput="onManualInput" data-field="detail"/>
+          </view>
+          <button class="use-manual-btn" bindtap="useManualAddress">使用此地址</button>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="payment-section">
+    <view class="section-title">选择支付方式</view>
+    <view class="method-list">
+      <view class="method-item {{item.selected ? 'selected' : ''}}" 
+            wx:for="{{paymentMethods}}" wx:key="id"
+            bindtap="selectMethod" data-id="{{item.id}}">
+        <text class="method-icon">{{item.icon}}</text>
+        <text class="method-name">{{item.name}}</text>
+        <view class="radio {{item.selected ? 'checked' : ''}}"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <button class="pay-btn" bindtap="confirmPay">确认支付 ¥{{totalAmount}}</button>
+    <view class="pay-tip">已通过安全支付加密保护</view>
+  </view>
+</view>

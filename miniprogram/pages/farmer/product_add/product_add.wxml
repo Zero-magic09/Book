@@ -1,0 +1,85 @@
+<view class="container">
+  
+  <!-- 1. Basic Info -->
+  <view class="section-card">
+    <view class="section-title">基本信息</view>
+    
+    <view class="form-item">
+      <view class="label">产品名称</view>
+      <input class="input-box" value="{{product.name}}" placeholder="例：精选高山红富士" placeholder-class="ph-color" bindinput="handleInput" data-field="name" />
+    </view>
+
+    <view class="form-row">
+      <view class="form-item item-half">
+        <view class="label">单价 (元)</view>
+        <input class="input-box" type="digit" value="{{product.price}}" placeholder="0.00" placeholder-class="ph-color" bindinput="handleInput" data-field="price" />
+      </view>
+      <view class="form-item item-half">
+        <view class="label">单位</view>
+        <input class="input-box" value="{{product.unit}}" placeholder="如：斤、箱" placeholder-class="ph-color" bindinput="handleInput" data-field="unit" />
+      </view>
+    </view>
+
+    <view class="form-row">
+      <view class="form-item item-half">
+        <view class="label">库存数量</view>
+        <input class="input-box" type="number" value="{{product.stock}}" placeholder="0" placeholder-class="ph-color" bindinput="handleInput" data-field="stock" />
+      </view>
+      <view class="form-item item-half">
+        <view class="label">产品分类</view>
+        <picker mode="selector" range="{{categories}}" bindchange="handleCategoryChange">
+            <view class="input-box">{{product.category}} ▼</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <!-- 2. Traceability Info -->
+  <view class="section-card">
+    <view class="section-title">产地与详情</view>
+    
+    <view class="form-item">
+      <view class="label">产地 (省市县)</view>
+      <input class="input-box" value="{{product.origin}}" placeholder="例：山东省烟台市栖霞市" placeholder-class="ph-color" bindinput="handleInput" data-field="origin" />
+    </view>
+
+    <view class="form-item">
+      <view class="label">产品描述 (种植周期/特点)</view>
+      <textarea class="textarea-box" value="{{product.description}}" placeholder="描述播种至采摘时长及化肥/农药使用情况..." placeholder-class="ph-color" bindinput="handleInput" data-field="description" maxlength="200" />
+    </view>
+
+    <view class="form-item">
+      <view class="label">产品图片 (最多6张)</view>
+      <view class="image-upload-grid">
+        <view class="upload-item" wx:for="{{tempImages}}" wx:key="*this">
+          <image class="preview-img" src="{{item}}" mode="aspectFill" bindtap="previewImage" data-url="{{item}}" />
+          <view class="remove-btn" bindtap="removeImage" data-index="{{index}}">×</view>
+        </view>
+        <view class="upload-btn" bindtap="chooseImage" wx:if="{{tempImages.length < 6}}">
+          <text class="plus">+</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 3. Promotion Tags -->
+  <view class="section-card">
+    <view class="section-title">推广标签</view>
+    <view class="tags-grid">
+      <view class="checkbox-item" wx:for="{{tags}}" wx:key="id" bindtap="handleTagToggle" data-index="{{index}}">
+        <view class="checkbox-box {{item.checked ? 'checked' : ''}}"></view>
+        <text class="checkbox-label">{{item.name}}</text>
+      </view>
+    </view>
+    
+    <!-- Manual Tag Input -->
+    <view class="custom-tag-input">
+      <input class="tag-input" value="{{customTagInput}}" placeholder="输入自定义标签" placeholder-class="ph-color" bindinput="handleCustomTagInput" />
+      <view class="add-tag-btn" bindtap="addCustomTag">添加</view>
+    </view>
+  </view>
+
+  <!-- Submit Button -->
+  <view class="footer-btn" bindtap="handleSubmit">提交上架审核</view>
+
+</view>

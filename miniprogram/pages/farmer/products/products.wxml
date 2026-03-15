@@ -1,0 +1,57 @@
+<wxs src="../../../utils/utils.wxs" module="utils" />
+
+<view class="container">
+  
+  <view class="product-list">
+    <view class="product-card" wx:for="{{products}}" wx:key="id">
+      <!-- 1. Product Image -->
+      <view class="image-box">
+        <image class="product-img" src="{{utils.formatImageURL(item.image)}}" mode="aspectFill" />
+      </view>
+
+      <!-- 2. Content -->
+      <view class="product-content">
+        <!-- Header: Title + Status -->
+        <view class="card-header">
+          <text class="product-name">{{item.name}}</text>
+          
+          <!-- Status Badge -->
+          <view class="status-badge status-published" wx:if="{{item.status == 'published'}}">已上架</view>
+          <view class="status-badge status-pending" wx:elif="{{item.status == 'pending'}}">审核中</view>
+          <view class="status-badge status-offline" wx:elif="{{item.status == 'offline'}}">已下架</view>
+          <view class="status-badge status-offline" wx:elif="{{item.status == 'rejected'}}" style="color: #ff4d4f; background: #fff1f0; border-color: #ffccc7;">已驳回</view>
+          <view class="status-badge status-offline" wx:else>已下架</view>
+        </view>
+
+        <!-- Stats: Price & Stock -->
+        <view class="stats-row">
+          <view class="stat-item">
+            <text class="stat-label">售价</text>
+            <text class="stat-val">¥ {{item.price}}</text>
+          </view>
+          <view class="stat-divider"></view>
+          <view class="stat-item">
+            <text class="stat-label">库存</text>
+            <text class="stat-val stock-val">{{item.stock}}{{item.unit}}</text>
+          </view>
+        </view>
+
+        <!-- Actions -->
+        <view class="action-footer">
+          <view class="btn btn-outline" bindtap="handleEdit" data-id="{{item.id}}">编辑</view>
+          <view class="btn btn-soft-green" bindtap="handleViewDetail" data-id="{{item.id}}">查看详情</view>
+        </view>
+
+      </view>
+    </view>
+    
+    <!-- 暂无数据 -->
+    <view class="empty-state" wx:if="{{products.length === 0}}">
+      <text class="empty-icon">📦</text>
+      <text class="empty-text">暂无商品</text>
+      <text class="empty-hint">点击底部"商品库"添加您的第一个商品</text>
+    </view>
+  </view>
+
+  <ui-tabbar activeTab="{{activeTab}}" items="{{tabItems}}" bind:select="handleTabSelect" />
+</view>

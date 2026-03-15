@@ -1,0 +1,45 @@
+<wxs src="../../../utils/utils.wxs" module="utils" />
+<view class="container">
+  <!-- Header Section -->
+  <view class="shot-header">
+    <text class="shot-title">展示实拍 ({{photos.length}}/9)</text>
+    <text class="sort-btn">拖拽可排序</text>
+  </view>
+  
+  <!-- Photo Grid -->
+  <view class="shot-grid">
+    <view class="shot-item {{dragging && dragIndex === index ? 'hidden' : ''}}" 
+          wx:for="{{photos}}" wx:key="id" wx:for-index="index"
+          bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd"
+          data-index="{{index}}">
+      <image class="shot-img" src="{{utils.formatImageURL(item.url)}}" mode="aspectFill" />
+      <view class="close-btn" catchtap="handleDelete" data-id="{{item.id}}">×</view>
+    </view>
+    
+    <view class="add-shot-btn" bindtap="handleUpload" wx:if="{{photos.length < 6}}">
+      <view class="add-icon">+</view>
+      <text class="add-text">添加实拍</text>
+    </view>
+
+    <!-- Draggable Mirror -->
+    <view class="drag-mirror" wx:if="{{dragging}}" 
+          style="left: {{dragX}}px; top: {{dragY}}px; width: {{itemWidth}}px; height: {{itemHeight}}px;">
+      <image class="shot-img" src="{{utils.formatImageURL(dragItem.url)}}" mode="aspectFill" />
+    </view>
+  </view>
+
+  <view class="save-footer">
+    <view class="save-btn {{photos.length > 0 ? 'active' : ''}}" bindtap="handleSave">保存修改</view>
+  </view>
+
+  <!-- Requirements Section -->
+  <view class="requirements-section">
+    <view class="req-title">图片要求</view>
+    <view class="req-list">
+      <view class="req-item">• 展示农场真实环境，包括田间、仓库或分拣区</view>
+      <view class="req-item">• 优先拍摄自然采光下的照片，避免反光</view>
+      <view class="req-item">• 请勿上传含有第三方水印的照片</view>
+      <view class="req-item">• 支持 JPG, PNG 格式，单张不超过 5MB</view>
+    </view>
+  </view>
+</view>

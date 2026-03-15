@@ -1,0 +1,57 @@
+<view class="container">
+  
+  <!-- Section 1: Core Info -->
+  <view class="section-card">
+    <view class="section-title">核心交易信息</view>
+    
+    <view class="form-item">
+      <view class="label">产品名称</view>
+      <input class="input-box" value="{{product.name}}" placeholder="请输入产品名称" />
+    </view>
+
+    <view class="form-row">
+      <view class="form-item item-half">
+        <view class="label">单价 (¥/斤)</view>
+        <input class="input-box text-green" value="{{product.price}}" type="digit" />
+      </view>
+      <view class="form-item item-half">
+        <view class="label">实时库存 (斤)</view>
+        <input class="input-box" value="{{product.stock}}" type="number" />
+      </view>
+    </view>
+  </view>
+
+  <!-- Section 2: Traceability -->
+  <view class="section-card">
+    <view class="section-title">溯源追溯扩展</view>
+    
+    <view class="form-item">
+      <view class="label">种植周期</view>
+      <input class="input-box" value="{{product.cycle}}" placeholder="例如：180天自然成熟" />
+    </view>
+
+    <view class="form-item">
+      <view class="label">农化记录详情</view>
+      <textarea class="textarea-box" value="{{product.description}}" placeholder="记录施肥、除虫等详细信息..." />
+    </view>
+  </view>
+
+  <!-- Section 3: Multimedia -->
+  <view class="section-card">
+    <view class="section-title">多媒体素材</view>
+    <view class="image-grid">
+      <block wx:for="{{product.images}}" wx:key="*this">
+        <image class="grid-img" src="{{item}}" mode="aspectFill" />
+      </block>
+      <view class="add-img-btn" bindtap="handleAddImage">
+        <text class="plus-icon">+</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Footer Action -->
+  <view class="footer">
+    <button class="save-btn" bindtap="handleSave">保存并提交审核</button>
+  </view>
+
+</view>

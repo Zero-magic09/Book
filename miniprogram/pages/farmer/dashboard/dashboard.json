@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "ui-tabbar": "/components/ui-tabbar/ui-tabbar",
+        "ui-card": "/components/ui-card/ui-card"
+    },
+    "navigationBarTitleText": "农户工作台"
+}

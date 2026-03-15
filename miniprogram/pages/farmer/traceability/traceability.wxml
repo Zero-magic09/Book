@@ -1,0 +1,59 @@
+<view class="container">
+  
+  <!-- 1. Tip Box -->
+  <view class="tip-box">
+    <text>提示：日志内容将直接展示在消费者的产品详情页中，请如实记录。</text>
+  </view>
+
+  <view class="form-card">
+    
+    <!-- Product Selection -->
+    <view class="form-item">
+      <view class="label">选择农产品</view>
+      <picker bindchange="handleProductChange" value="{{productIndex}}" range="{{products}}">
+        <view class="picker-box {{productIndex === null ? 'placeholder' : ''}}">
+          {{productIndex === null ? '请选择产品' : products[productIndex]}}
+          <text class="arrow">∨</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- Record Type -->
+    <view class="form-item">
+      <view class="label">记录类型</view>
+      <view class="type-grid">
+        <view class="type-tag {{selectedType === item ? 'active' : ''}}" 
+              wx:for="{{recordTypes}}" wx:key="*this"
+              bindtap="handleTypeSelect" data-type="{{item}}">
+          {{item}}
+        </view>
+      </view>
+    </view>
+
+    <!-- Content -->
+    <view class="form-item">
+      <view class="label">记录内容</view>
+      <textarea class="content-area" 
+                placeholder="详细描述本次操作的内容及使用的农资品牌..." 
+                placeholder-class="ph-color"
+                bindinput="handleInput"
+                value="{{content}}" />
+    </view>
+
+    <!-- Photos -->
+    <view class="form-item">
+      <view class="label">现场照片 (可选)</view>
+      <view class="photo-grid">
+         <image class="photo-item" wx:for="{{images}}" wx:key="*this" src="{{item}}" mode="aspectFill" />
+         <view class="add-photo-btn" bindtap="handleAddImage">
+           <text class="plus">+</text>
+         </view>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- Submit Button -->
+  <view class="footer-btn" bindtap="handleSubmit">保存并更新</view>
+
+</view>

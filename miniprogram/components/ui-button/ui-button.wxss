@@ -1,0 +1,61 @@
+/* components/ui-button/ui-button.wxss */
+@import "../../app.wxss";
+
+.btn {
+  width: 100%;
+  padding: 24rpx 32rpx; /* py-3 px-4 */
+  border-radius: 24rpx; /* rounded-xl */
+  font-weight: 600; /* font-semibold */
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  font-size: 32rpx; /* text-base estimation */
+  line-height: 1.5;
+}
+
+.btn::after {
+  border: none;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+/* Primary: bg-emerald-600 text-white */
+.btn-primary {
+  background-color: var(--emerald-600);
+  color: #ffffff;
+}
+.btn-hover-primary {
+  background-color: var(--emerald-700); /* active:bg-emerald-700 */
+}
+
+/* Secondary: bg-amber-500 text-white */
+.btn-secondary {
+  background-color: var(--amber-500);
+  color: #ffffff;
+}
+.btn-hover-secondary {
+  background-color: var(--amber-600);
+}
+
+/* Outline: border-2 border-emerald-600 text-emerald-600 */
+.btn-outline {
+  background-color: transparent;
+  border: 4rpx solid var(--emerald-600); /* border-2 = 2px ~ 4rpx */
+  color: var(--emerald-600);
+}
+.btn-hover-outline {
+  background-color: var(--emerald-50);
+}
+
+/* Danger: bg-red-500 text-white */
+.btn-danger {
+  background-color: var(--red-500);
+  color: #ffffff;
+}
+.btn-hover-danger {
+  background-color: var(--red-600);
+}

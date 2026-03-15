@@ -1,0 +1,206 @@
+/** pages/farmer/profile/profile.wxss **/
+.container {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  padding-bottom: 200rpx;
+}
+
+/* Header Section */
+.profile-header {
+  background-color: #059669; /* Green header */
+  padding: 40rpx 32rpx 120rpx; /* Extra padding for overlap */
+  border-bottom-left-radius: 48rpx;
+  border-bottom-right-radius: 48rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 24rpx; /* Rounded square */
+  border: 4rpx solid rgba(255, 255, 255, 0.4);
+  margin-right: 24rpx;
+  background-color: #fff;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.nickname {
+  font-size: 40rpx;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.user-tag {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 4rpx 16rpx;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+}
+
+.profile-arrow {
+  width: 56rpx;
+  height: 56rpx;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+}
+
+/* Stats Row */
+.stats-row {
+  display: flex;
+  justify-content: space-between;
+  margin: -80rpx 32rpx 24rpx; /* Overlap header */
+  position: relative;
+  z-index: 2;
+  gap: 20rpx;
+}
+
+.stat-item {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 24rpx;
+  padding: 32rpx 16rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+}
+
+.stat-num {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1e293b; /* Dark text for farmer stats */
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #64748b;
+}
+
+/* Section Card */
+.section-card {
+  background-color: #fff;
+  margin: 0 32rpx 24rpx;
+  border-radius: 32rpx;
+  padding: 24rpx 32rpx;
+  box-shadow: 0 4rpx 12rpx rgba(148, 163, 184, 0.02);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+/* Service List (Menu Items) */
+.service-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #f8fafc;
+}
+
+.service-item:last-child {
+  border-bottom: none;
+}
+
+.service-left {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.service-icon {
+  font-size: 36rpx;
+  width: 48rpx;
+  text-align: center;
+}
+
+.service-name {
+  font-size: 28rpx;
+  color: #334155;
+  font-weight: 500;
+}
+
+.service-right {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.service-desc {
+  font-size: 24rpx;
+  color: #cbd5e1;
+}
+
+.service-arrow {
+  color: #cbd5e1;
+  font-size: 28rpx;
+}
+
+/* Specific text colors from User Profile adapted */
+.text-gray-300 { color: #cbd5e1; }
+.text-rose-500 { color: #f43f5e; }
+
+/* Logout Button */
+.logout-section {
+  padding: 0 32rpx 32rpx;
+}
+
+.logout-btn {
+  background-color: #fff;
+  color: #ef4444;
+  text-align: center;
+  padding: 28rpx;
+  border-radius: 20rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+
+.logout-icon {
+  font-size: 28rpx;
+}
+
+/* Footer Version */
+.footer-version {
+  text-align: center;
+  color: #cbd5e1;
+  font-size: 22rpx;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2rpx;
+  margin-bottom: 24rpx;
+}
